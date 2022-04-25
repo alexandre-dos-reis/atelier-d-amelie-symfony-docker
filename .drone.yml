@@ -14,9 +14,13 @@ server:
 steps:
 - name: Deploy via docker
   commands:
-    - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
-    - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
+    - echo $TEST >> .env
+    - printenv
+    - cat .env
+    # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
+    # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
   environment:
+    TEST: env-vars-test
     APP_SECRET:
       from_secret: APP_SECRET
     DB_USER:
@@ -33,3 +37,4 @@ steps:
       from_secret: STRIPE_PUBLIC_KEY
     STRIPE_CONFIRM_END_POINT_KEY:
       from_secret: STRIPE_CONFIRM_END_POINT_KEY
+    
