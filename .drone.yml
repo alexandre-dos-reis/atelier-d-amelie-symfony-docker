@@ -11,26 +11,28 @@ server:
   password:
     from_secret: PASSWORD
 
+environment:
+  APP_ENV: prod
+  APP_SECRET:
+    from_secret: APP_SECRET
+  DB_USER:
+    from_secret: DB_USER
+  DB_PASS:
+    from_secret: DB_PASS
+  DB_ROOT_PASS:
+    from_secret: DB_ROOT_PASS
+  DB_NAME:
+    from_secret: DB_NAME
+  STRIPE_SECRET_KEY:
+    from_secret: STRIPE_SECRET_KEY
+  STRIPE_PUBLIC_KEY:
+    from_secret: STRIPE_PUBLIC_KEY
+  STRIPE_CONFIRM_END_POINT_KEY:
+    from_secret: STRIPE_CONFIRM_END_POINT_KEY
+
 steps:
 - name: Deploy via docker
-  environment:
-    APP_ENV: prod
-    APP_SECRET:
-      from_secret: APP_SECRET
-    DB_USER:
-      from_secret: DB_USER
-    DB_PASS:
-      from_secret: DB_PASS
-    DB_ROOT_PASS:
-      from_secret: DB_ROOT_PASS
-    DB_NAME:
-      from_secret: DB_NAME
-    STRIPE_SECRET_KEY:
-      from_secret: STRIPE_SECRET_KEY
-    STRIPE_PUBLIC_KEY:
-      from_secret: STRIPE_PUBLIC_KEY
-    STRIPE_CONFIRM_END_POINT_KEY:
-      from_secret: STRIPE_CONFIRM_END_POINT_KEY
   commands:
-  - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
-  - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
+    - echo $${APP_ENV}
+  # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
+  # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
