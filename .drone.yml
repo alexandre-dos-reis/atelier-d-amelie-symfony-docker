@@ -34,5 +34,6 @@ steps:
   commands:
     - echo ${APP_ENV}
     - echo ${HOST_ADDR}
+    - echo ${APP_SECRET}
   # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
   # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
