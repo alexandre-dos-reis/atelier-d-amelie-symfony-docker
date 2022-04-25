@@ -14,13 +14,7 @@ server:
 steps:
 - name: Deploy via docker
   commands:
-    - echo ${APP_ENV}
-    - echo ${HOST_ADDR}
-    - echo ${APP_SECRET}
-    - echo ${TEST}
-    - export MYVAL="Hello world"
-    - echo ${MYVAL}
-  # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
+  - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
   # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
   environment:
     TEST: test

@@ -14,38 +14,38 @@ ENV STRIPE_SECRET_KEY $STRIPE_SECRET_KEY
 ENV STRIPE_PUBLIC_KEY $STRIPE_PUBLIC_KEY
 ENV STRIPE_CONFIRM_END_POINT_KEY $STRIPE_CONFIRM_END_POINT_KEY
 
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+# ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions \
-        pdo_mysql \
-        mbstring \
-        zip \
-        exif \
-        pcntl \
-        gd \
-        intl
+# RUN chmod +x /usr/local/bin/install-php-extensions && \
+#     install-php-extensions \
+#         pdo_mysql \
+#         mbstring \
+#         zip \
+#         exif \
+#         pcntl \
+#         gd \
+#         intl
 
-RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
-   mv composer.phar /usr/local/bin/composer
+# RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
+#    mv composer.phar /usr/local/bin/composer
 
-RUN apt update && apt install -yqq nodejs npm
+# RUN apt update && apt install -yqq nodejs npm
 
-COPY . /var/www/
+# COPY . /var/www/
 
-COPY ./docker/apache.conf /etc/apache2/sites-available/000-default.conf
+# COPY ./docker/apache.conf /etc/apache2/sites-available/000-default.conf
 
-RUN cd /var/www && \
-    composer install && \
-    npm install --force && \
-    npm run build && \
-    php bin/console assets:install
+# RUN cd /var/www && \
+#     composer install && \
+#     npm install --force && \
+#     npm run build && \
+#     php bin/console assets:install
 
-WORKDIR /var/www
+# WORKDIR /var/www
 
-RUN chown -R www-data:www-data /var/www
-USER www-data
+# RUN chown -R www-data:www-data /var/www
+# USER www-data
 
-ENTRYPOINT ["bash", "./docker/entrypoint.sh"]
+# ENTRYPOINT ["bash", "./docker/entrypoint.sh"]
 
-EXPOSE 80
+# EXPOSE 80
