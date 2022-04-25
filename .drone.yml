@@ -14,12 +14,11 @@ server:
 steps:
 - name: Deploy via docker
   commands:
-  - export APP_ENV="dev"
   - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
   # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
   environment:
-    TEST: test
-    APP_ENV: prod
+    APP_ENV:
+      from_secret: app_env
     APP_SECRET:
       from_secret: APP_SECRET
     DB_USER:
