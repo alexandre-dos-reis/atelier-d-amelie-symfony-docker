@@ -5,6 +5,8 @@ services:
         build: 
             context: .
             dockerfile: docker/Dockerfile
+            # args:
+            #     - DATABASE_URL=mysql://${DB_USER}:${DB_PASS}@atelier-amelie-db:3306/${DB_NAME}?serverVersion=mariadb-10.6.3  
         networks:
             - atelier-amelie
             - caddy
