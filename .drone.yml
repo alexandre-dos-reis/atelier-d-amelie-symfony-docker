@@ -15,7 +15,7 @@ steps:
 - name: Deploy via docker
   commands:
   - printenv
-  # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
+  - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
   # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
   environment:
     APP_ENV: dev
