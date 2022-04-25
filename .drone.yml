@@ -15,7 +15,7 @@ steps:
 - name: Deploy via docker
   commands:
   - echo APP_ENV=PROD >> .env
-  - echo APP_SECRET=${APP_SECRET} >> .env
+  - echo APP_SECRET=$APP_SECRET >> .env
   - echo DB_USER=${DB_USER} >> .env
   - echo DB_PASS=${DB_PASS} >> .env
   - echo DB_ROOT_PASS=${DB_ROOT_PASS} >> .env
