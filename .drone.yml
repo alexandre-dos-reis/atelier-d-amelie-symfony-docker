@@ -18,6 +18,7 @@ steps:
     - echo ${HOST_ADDR}
     - echo ${APP_SECRET}
     - echo ${TEST}
+    - echo ${UID}
   # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
   # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
   environment:
