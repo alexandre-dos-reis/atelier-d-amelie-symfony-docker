@@ -14,6 +14,8 @@ server:
 steps:
 - name: Deploy via docker
   commands:
+  - echo TEST=$TEST >> .env
+  - echo TEST=${TEST} >> .env
   - echo APP_ENV=PROD >> .env
   - echo APP_SECRET=${APP_SECRET} >> .env
   - echo DB_USER=${DB_USER} >> .env
@@ -28,6 +30,8 @@ steps:
   # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
   # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
   environment:
+    TEST:
+      from_secret: test
     APP_SECRET:
       from_secret: APP_SECRET
     DB_USER:
