@@ -13,7 +13,15 @@ server:
 
 steps:
 - name: Deploy via docker
+  commands:
+    - echo ${APP_ENV}
+    - echo ${HOST_ADDR}
+    - echo ${APP_SECRET}
+    - echo ${TEST}
+  # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
+  # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
   environment:
+    TEST: test
     APP_ENV: prod
     APP_SECRET:
       from_secret: APP_SECRET
@@ -31,9 +39,3 @@ steps:
       from_secret: STRIPE_PUBLIC_KEY
     STRIPE_CONFIRM_END_POINT_KEY:
       from_secret: STRIPE_CONFIRM_END_POINT_KEY
-  commands:
-    - echo ${APP_ENV}
-    - echo ${HOST_ADDR}
-    - echo ${APP_SECRET}
-  # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
-  # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
