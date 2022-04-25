@@ -1,0 +1,16 @@
+.container-cours-all {
+    padding-left: 14vw;
+}
+
+.container-cours {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    padding: 30px;
+}
+
+.container-cours > div {
+    margin: 0.5em;
+    width: 300px;
+}

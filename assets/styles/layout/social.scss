@@ -1,0 +1,31 @@
+.social {
+    position: relative;
+    width: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 43px;
+}
+
+#insta img {
+    height: 35px;
+}
+
+#facebook img {
+    height: 43px;
+}
+
+#insta img,
+#facebook img {
+    position: relative;
+    top: 5px;
+    filter: grayscale(60%);
+}
+
+#insta img:hover {
+    filter: grayscale(0%);
+}
+
+#facebook img:hover {
+    filter: contrast(200%);
+}

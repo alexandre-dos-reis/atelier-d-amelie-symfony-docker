@@ -1,0 +1,17 @@
+<footer>
+	<div class="footer-1">©{{ "now"|date("Y") }},
+		<span class="fontNav">L&nbsp;'atelier d&nbsp;'Amélie</span>
+		, reproduction totale ou partielle interdite, site créé par
+		<a href="{{ app.request.server.get('AUTHOR_SITE') }}" target="_blank" class="link">{{ app.request.server.get('AUTHOR') }}</a>.
+	</div>
+	<div class="footer-2">
+		{{ app.request.server.get('GEOGRAPHY') }}
+		-
+		<a class="link" href="{{ path('contact') }}">Me contacter</a>
+		-
+		{{ app.request.server.get('PHONE') }}
+	</div>
+	<div class="footer-3">
+		<a class="link" href="/cgv">Conditions générales de vente</a>
+	</div>
+</footer>

@@ -1,0 +1,57 @@
+#baniere1 {
+    background: url(../../img/ban6-min.jpg) no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 35% 145%;
+    height: 300px;
+    width: 100%;
+}
+
+#top-arrow {
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    right: 0;
+
+    & > img {
+        width: 50px;
+        height: auto;
+    }
+}
+
+header {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top: 1px solid rgb(185, 185, 185);
+    border-bottom: 1px solid rgb(185, 185, 185);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 60px;
+    padding: 0 20px;
+    height: 45px;
+    z-index: 25;
+}
+
+.logo,
+.logo_responsive {
+    position: relative;
+    line-height: 3rem;
+    font-size: 4.5rem;
+    font-family: "fontNav";
+    letter-spacing: 0px;
+    text-shadow: 4px 4px 2px rgba(19, 19, 19, 0.466);
+    top: -0px;
+    color: rgb(255, 255, 255);
+}
+
+.logo_responsive {
+    display: none;
+}
+
+.icon {
+    display: none;
+}

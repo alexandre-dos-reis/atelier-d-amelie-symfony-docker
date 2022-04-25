@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div id="js-stripe" data-cs="{{ client_secret }}" data-pk="{{ public_key }}" data-success-url="https://{{ app.request.server.get('SERVER_NAME') }}{{ path('payment_success') }}"></div>
+
+	<!-- Display a payment form -->
+	<form id="payment-form">
+		<div
+			id="payment-element"><!--Stripe.js injects the Payment Element-->
+		</div>
+		<button id="submit">
+			<div class="spinner hidden" id="spinner"></div>
+			<span id="button-text">Payer</span>
+		</button>
+		<div id="payment-message" class="hidden"></div>
+	</form>
+
+	<div class="center no-indent">
+		Un courriel récapitulatif vous sera envoyé une fois le paiement effectué.
+	</div>
+
+{% endblock %}

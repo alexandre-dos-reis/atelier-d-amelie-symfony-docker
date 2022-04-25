@@ -1,0 +1,90 @@
+.cartItem {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border: 1px solid black;
+    border-bottom: none;
+    padding: 10px;
+    
+    &:first-child {
+        border-radius: 5px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    } 
+
+    & > div {
+        margin: 0 20px;
+    }
+
+    img {
+        width: 100px;
+        height: auto;
+        margin: 5px 20px;
+        border-radius: 5px;
+    }
+
+    .category {
+        margin: 0 5px;
+        width: 280px;
+    }
+
+    .name {
+        font-weight: bolder;
+        width: 280px;
+    }
+
+    .price {
+        width: 100px;
+    }
+
+    .qty-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & > * {
+            margin: 0 5px;
+        }
+    }
+
+    .sub-total {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        font-weight: bolder;
+    }
+
+    button {
+        border: none;
+        background-color: inherit;
+        &:active {
+            color: rgb(164, 164, 164);
+        }
+    }
+
+    svg {
+        cursor: pointer;
+    }
+
+    .delete-cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Courier New', Courier, monospace;
+        color: rgb(232, 99, 99);
+        border-radius: 5px;
+        margin: 10px;
+    }
+
+    .show-product a{
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            text-decoration: underline;
+            text-underline-offset: 1px;        }
+    }
+}

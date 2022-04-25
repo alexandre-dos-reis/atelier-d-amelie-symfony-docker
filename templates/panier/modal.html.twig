@@ -1,0 +1,40 @@
+<div id="js-cart-modal" style="display:none;">
+	{# <div class="modal-wrapper">
+		<button id="js-close-modal">Fermer</button>
+		<h3>Panier</h3>
+
+		<div id="js-cart-container">
+			Votre panier est vide
+		</div> #}
+
+		{# {% if not cartService.countProducts is same as 0 %}
+							<table>
+								<thead>
+									<tr>
+										<th>Produit</th>
+										<th>Prix</th>
+										<th>Quantités</th>
+										<th>Total</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+								<tfoot>
+									<tr>
+										<td colspan="3">Total :</td>
+										<td colspan="2">1000</td>
+									</tr>
+								</tfoot>
+							</table>
+						{% else %}
+							<div class="para center no-indent">Votre panieeer est vide. Pour ajouter des produits, rendez-vous dans la boutique :</div>
+							<div class="para center no-indent flex flex-column">
+								{% for s in shopCategoryRepository.findAll %}
+									<li class="link-close-nav no-list-style">
+										<a class="link" href="{{ path('boutique_categorie', {'cat_slug': s.slug}) }}">{{ s.name }}</a>
+									</li>
+								{% endfor %}
+							</div>
+						{% endif %} #}
+	{# </div> #}
+</div>

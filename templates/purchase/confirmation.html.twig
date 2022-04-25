@@ -1,0 +1,113 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Confirmation de votre commande |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Panier de mes produits sélectionnés
+{% endblock %}
+
+{% block body %}
+
+	<h2>
+		<span class="lettrine lettrine-title">C</span>onfirmation</h2>
+
+	{% if cgvBool == true %}
+		<p class="mb-2 invalide para center no-indent bolder">
+			Vous devez accepter les conditions générales de vente !
+		</p>
+	{% endif %}
+
+	<div class="bolder para center no-indent larger">Récapitulatif de votre commande</div>
+
+	<div class="bolder para center no-indent larger">Adresse et coordonnées</div>
+
+	<div class="para center no-indent mb-2">
+		<p>
+			<a class="link" href="{{ path('purchase_info') }}">Modifier</a>
+		</p>
+
+		<div class="{% if purchaseAddresses.hasBillingAddress %}mb-1{% endif %}">
+			{% if purchaseAddresses.hasBillingAddress %}
+				<p class="bolder">Adresse de facturation</p>
+			{% endif %}
+			<p>{{ purchaseAddresses.email }}</p>
+			<p>{{ purchaseAddresses.firstAddressFullname }}</p>
+			<p>{{ purchaseAddresses.firstAddressAddress }}</p>
+			<p>{{ purchaseAddresses.firstAddressPostalCode }}
+				{{ purchaseAddresses.firstAddressCity }},
+				{{ purchaseAddresses.firstAddressCountry | country_name('fr')}}</p>
+			<p>{{ purchaseAddresses.firstAddressPhone }}</p>
+		</div>
+
+		{% if purchaseAddresses.hasBillingAddress %}
+			<div>
+				<p class="bolder">Adresse de livraison</p>
+				<p>{{ purchaseAddresses.secondAddressFullname }}</p>
+				<p>{{ purchaseAddresses.secondAddressAddress }}</p>
+				<p>{{ purchaseAddresses.secondAddressPostalCode }}
+					{{ purchaseAddresses.secondAddressCity }},
+					{{ purchaseAddresses.secondAddressCountry | country_name('fr')}}</p>
+			</div>
+		{% endif %}
+	</div>
+
+	<div class="bolder para center no-indent larger">Vos articles</div>
+
+	<div class="para center no-indent mb-2">
+		<p>
+			<a class="js-open-modal-cart link" validate-url="{{ path('purchase_payment', {cgvBool: '0'}) }}" style="cursor: pointer;">Modifier</a>
+		</p>
+		<div class="flex-list">
+			<ul class="para list">
+				{% for item in cart %}
+					<li class="no-list-style left" style="display: flex; align-items: center; margin-bottom: 10px; border: 1px solid rgb(190, 190, 190); padding: 10px; border-radius: 2px;">
+						<img style="height: 80px; width: 80px; object-fit: contain;" src="/uploads/products/{{ item.product.imageProducts[0] }}" alt="{{ item.product.__toString }}"/>
+						<div>
+							<p>{{ item.product.__toString}}</p>
+							<p>{{ item.qty }}
+								x
+								{{ item.product.price | amount }}
+								=
+								{{ (item.qty * item.product.price) | amount }}
+							</p>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+
+	<div class=" para center no-indent">
+		<p>Total produits :
+			{{ totalProducts | amount }}</p>
+		<p>Frais d'assurance :
+			{{ insuranceCost | amount }}</p>
+		<p>Frais de port :
+			{{ weightCost | amount }}</p>
+	</div>
+
+	<div class="bolder para center no-indent">
+		<p>TOTAL TTC :
+			{{ totalOfTotal | amount }}</p>
+	</div>
+
+	<div class="bolder para center no-indent mb-2">
+		<p class="mb-1">
+			<input type="checkbox" id="js-accept-cgv">
+			Vous avez lu et accepté les
+			<a class="link" target="_blank" href="{{ path('cgv') }}">conditions générales de vente</a>.
+		</p>
+		{% if cgvBool == true %}
+			<p class="mb-2 invalide">
+				Vous devez accepter les conditions générales de vente !
+			</p>
+		{% endif %}
+		<p class="mb-1">
+			<a id="js-stripe-pay-link" class="pay-button" payment-url="{{ path('payment_index')}}" href="{{ path('purchase_payment', {'cgvBool': '1'}) }}">Procéder au paiement</a>
+		</p>
+	</div>
+
+{% endblock %}

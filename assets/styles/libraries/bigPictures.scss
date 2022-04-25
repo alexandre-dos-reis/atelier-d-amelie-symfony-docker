@@ -1,0 +1,26 @@
+#bp_container {
+    img {
+        height: calc(100% - 200px);
+    }
+}
+
+#bp_caption {
+
+    background: rgba(255, 255, 255, 0) !important;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+    button.bp-xc {
+        display: none;
+    }
+
+    svg {
+        fill: red;
+    }
+
+    span {
+        font-size: 1.2rem;
+        color: #ffffff;
+    }
+}

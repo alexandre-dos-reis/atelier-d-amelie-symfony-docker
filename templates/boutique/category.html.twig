@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Boutique |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Boutique, oeuvres, commandes et demandes sur mesure !
+{% endblock %}
+
+{% block body %}
+
+	<h2>
+		<span class="lettrine lettrine-title">B</span>outique
+	</h2>
+
+	<div class="for-sale">
+
+		<h3>{{ shopCat.name }}
+			disponibles à la vente :</h3>
+		{% if shopSubCats | length == 0 %}
+			<div class="para center no-indent">
+				Aucune
+				{{ shopCat.name | lower }}
+				pour le moment.
+			</div>
+		{% else %}
+			{% for c in shopSubCats %}
+				<h4 id="{{ c.slug }}">{{ c.name }}</h4>
+				<div class="product-container">
+					{% for p in c.products %}
+						<a href="{{ path('boutique_produit', { 'cat_slug': shopCat.slug, 'sub_cat_slug': c.slug, 'p_slug': p.artwork.slug, 'p_id': p.id }) }}">
+							<img src="{{ vich_uploader_asset(p.firstImage, p.firstImage.imageWatermarked ? 'imageWatermarkedFile' : 'imageOriginalFile') | imagine_filter('boutique_mini') }}" alt="{{ p.getArtwork.name }}">
+							<div class="card">
+								<div class="titlesBelowImg">{{ p.getArtwork.name }}</div>
+								<div class="description">{{ p.description | u.truncate(20, '...', false)}}</div>
+								<div class="bottom-card">
+									<div class="more">Voir plus</div>
+									<div class="prices">{{ p.price | amount }}</div>
+								</div>
+							</div>
+						</a>
+					{% endfor %}
+				</div>
+			{% endfor %}
+		{% endif %}
+
+	</div>
+
+	<div class="para center">
+		Ces tarifs ne prennent en comptent ni l'encadrement, ni les frais de ports, ni l'assurance pour l'envoi par courrier. Si vous êtes dans la région de Caen, vous pouvez récupérer vos achats directement à mon domicile.
+	</div>
+{% endblock %}

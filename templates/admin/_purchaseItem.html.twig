@@ -1,0 +1,35 @@
+{# {% block _Purchase_custom_purchase_items_widget %}
+{{ dump(form.vars) }}
+	{% for item in form.children %}
+		<textarea disabled="disabled" id="{{ item.vars.id }}" name="{{ item.vars.full_name }}" class="form-control mb-2" id="exampleFormControlTextarea1" rows="2">
+{{ item.vars.value.productName }}
+{{ item.vars.value.qty }} x {{ item.vars.value.productPrice | amount }} = {{ (item.vars.value.productPrice * item.vars.value.qty) | amount}}</textarea>
+	{% endfor %}
+{% endblock %} #}
+
+{% block _Purchase_custom_purchase_items_widget %}
+	{# {{ dump(form.vars) }} #}
+
+	<select id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" data-ea-widget="ea-autocomplete" class="form-select tomselected" multiple="multiple" tabindex="-1" hidden="hidden">
+		{% for item in form.vars.value %}
+			<option value="{{ item }}" selected="true">{{ choices[item].label }}</option>
+		{% endfor %}
+	</select>
+	<div tabindex="0">
+		<ul class="list-group">
+			{% for item in form.vars.value %}
+				<li class="list-group-item ">
+					<h5>{{ choices[item].label }}</h5>
+					<img src="/uploads/products/{{ productRepository.find(choices[item].data.product.id).getImageProducts[0].file }}" style="height: 100px; weight: auto; margin-right: 30px;">
+					<span style="font-size: 1.1rem;" class="badge badge-secondary badge-pill">{{ choices[item].data.qty }}</span>
+					<span style="font-size: 1.1rem;">x
+						{{ choices[item].data.productPrice | amount }}
+						=
+						{{ (choices[item].data.productPrice * choices[item].data.qty) | amount }}
+					</span>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+{% endblock %}

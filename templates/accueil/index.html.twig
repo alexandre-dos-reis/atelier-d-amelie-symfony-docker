@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Bienvenue sur mon site dédié à l'Enluminure et la Calligraphie.
+{% endblock %}
+
+{% block body %}
+{# {{ date | date('d/m/Y H:i:s', "Europe/Paris")}} #}
+	<div class="para_lettrine">
+    <span class="lettrine">B</span><span class="bolder">ienvenue sur mon site dédié à l'Enluminure et la Calligraphie</span>. Passionnée depuis toujours de dessin et de peinture, spécialement l'aquarelle, j'ai découvert l'Enluminure à l'âge de seize ans. J'ai suivi ma formation à <a href="https://www.iseem.fr/" target="_blank" class="link">l'Institut Supérieur Européen de l'Enluminure et du Manuscrit à Angers</a>, où j'ai obtenu le titre d'Enlumineur de France. J'exerce ma passion à Caen où je donne des cours d'Enluminure et de Calligraphie.
+</div>
+<h3>Qu'est-ce que l&nbsp;'Enluminure ?</h3>
+<img class="main-img shadow-box" src="{{ asset('build/img/enluminure_home.jpg') }}" alt="enluminure">
+<div class="source">
+    Source : <a class="link" href="https://www.tendanceouest.com/actualite-102137-amelie-gille-la-vingtaine-en-couleurs-et-en-relief.html" target="_blank">TendanceOuest.com</a>
+</div>
+<div class="para_lettrine">
+    <span class="lettrine">L</span>e mot <span class="italic bolder">enluminure</span> vient du latin <span class="italic bolder">illuminare</span> qui signifie <span class="italic bolder">mettre en lumière</span>. Les enluminures sont les illustrations des manuscrits du Moyen-Age. Ceux-ci étaient entièrement calligraphiés et décorés à la main. Ce travail était réservé aux moines, les manuscrits étant essentiellement religieux (bibles, évangéliaires, livres d'heures...), avant de s'ouvrir petit à petit à un usage plus large et profane, avec des manuscrits comme des livres de chasse, bestiaires, récits divers...
+</div>
+<div class="para">Le support était le parchemin (peau de veau, de mouton, de chèvre...); on utilisait des pigments naturels pour les peintures; ils étaient préparés avec des liants comme l'oeuf, la gomme arabique, etc... Les manuscrits étaient reliés avec des ais de bois recouverts de cuir. L'or était très utilisé, en feuille ou en poudre, il était symbole de richesse...
+</div>
+<div class="para">
+    Aujourd'hui je vous propose de redécouvrir les arts du livre... Je pratique l'enluminure avec les techniques du Moyen-Age ; je travaille avec des pigments naturels, sur papier ou parchemin, en respectant les différents styles de l'enluminure, mais aussi en créant mon propre style... L'enluminure est un art qui n'a cessé d'évoluer du Vème siècle jusqu'à l'invention de l'imprimerie au VXème siècle; c'est pourquoi je veux la faire revivre en la modernisant et en l'adaptant à notre époque !
+</div>
+{% endblock %}

@@ -1,0 +1,103 @@
+#react-cart-modal {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 30;
+
+    h2 {
+        margin: 0.5em 0;
+    }
+
+    .modal-wrapper {
+        overflow: auto;
+        background: white;
+        width: 1200px;
+        max-width: calc(100vw - 20px);
+        max-height: calc(100vh - 20px);
+        padding: 20px;
+        border-radius: 5px;
+        background-color: rgb(247, 240, 229);
+    }
+
+    .empty-cart {
+        p {
+            text-align: center;
+            margin: 10px;
+            font-size: larger;
+            font-family: "page";
+        }
+        a {
+            display: block;
+            text-align: center;
+            font-size: larger;
+        }
+        .shop-links {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            a {
+                text-align: left;
+                margin-bottom: 5px;
+                text-underline-offset: 2px;
+                color: black;
+                font-family: "page";
+                padding: 10px;
+                border-radius: 5px;
+                font-size: 1.2em;
+                text-align: center;
+                background-color: rgb(210, 210, 210);
+                &:hover {
+                    background-color: rgb(171, 171, 171);
+                }
+            }
+        }
+    }
+
+    .close-button {
+        border: 0;
+        background-color: inherit;
+        position: absolute;
+        svg {
+            cursor: pointer;
+        }
+    }
+
+    .total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid black;
+        border-radius: 5px;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-bottom: none;
+        padding: 20px;
+        font-size: 1.3rem;
+        border-bottom: 1px solid black;
+        font-weight: bolder;
+    }
+
+    .proceedToPaymentOrClose {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        text-align: right;
+        font-size: 1.2rem;
+        color: black;
+        font-family: "page";
+
+        .continue {
+            background-color: rgb(210, 210, 210);
+            &:hover {
+                background-color: rgb(171, 171, 171);
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{% block _Purchase_custom_purchase_addresses_widget %}
+
+	{% set addresseTypes = {
+        'Billing': 'Adresse de facturation', 
+        'Delivery': 'Adresse de Livraison',
+        'Delivery and billing': ''
+    } %}
+
+	<select id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" data-ea-widget="ea-autocomplete" class="form-select tomselected" multiple="multiple" tabindex="-1" hidden="hidden">
+		{% for item in form.vars.value %}
+			<option value="{{ item }}" selected="true">{{ choices[item].label }}</option>
+		{% endfor %}
+	</select>
+	<div tabindex="0">
+		<ul class="list-group">
+			{% for item in form.vars.value %}
+				<li class="list-group-item ">
+					<h5>{{ addresseTypes[choices[item].label] }}</h5>
+					<p>{{ choices[item].data.fullname }}<br>
+						{{ choices[item].data.address }}<br>
+					{{ choices[item].data.postalCode }} {{ choices[item].data.city }}<br>
+					{{ choices[item].data.country | country_name('fr')}}<br>
+					{% if choices[item].data.phone is not null %}{{ choices[item].data.phone }}<br>{% endif %}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+{% endblock %}

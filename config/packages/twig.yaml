@@ -1,0 +1,12 @@
+twig:
+  default_path: '%kernel.project_dir%/templates'
+  globals:
+    productRepository: "@App\\Repository\\ProductRepository"
+    categoryRepository: "@App\\Repository\\CategoryRepository"
+    shopCategoryRepository: "@App\\Repository\\ShopCategoryRepository"
+    # shopSubCategoryRepository: "@App\\Repository\\ShopSubCategoryRepository"
+    cartService: "@App\\Service\\Cart\\CartService"
+
+when@test:
+  twig:
+    strict_variables: true

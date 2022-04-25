@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Cours et stages |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Renseignements sur les cours, stages et formations. En groupe ou en cours particuliers.
+{% endblock %}
+
+{% block body %}
+	<h2>
+		<span class="lettrine lettrine-title">C</span>ours et stages
+	</h2>
+
+	<h3>Cours particuliers</h3>
+	<div class="para center no-indent">
+		Possibilité de cours particuliers et de stages à mon domicile, me contacter
+		<a class="link" href="{{ path('contact') }}">par courriel</a>
+		ou
+		<a class="link" href="tel:+33604011283">par téléphone</a>
+		pour plus de renseignements...
+	</div>
+
+{% endblock %}

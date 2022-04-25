@@ -1,0 +1,7 @@
+{% block _Product_custom_description_widget %}
+    {# {{ dump() }} #}
+	<textarea id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" required="required" rows="5" data-ea-textarea-field="data-ea-textarea-field" class="form-control mb-2" style="overflow: hidden; resize: none; box-sizing: border-box; height: 119px;">{{form.vars.value}}</textarea>
+    <button type="button" class="btn btn-primary" id="js-copy-artwork-description-button" artwork-id="{{ form.parent.children['artwork'].vars.value }}">
+        Remplacer par la description de l'oeuvre
+    </button>
+{% endblock %}

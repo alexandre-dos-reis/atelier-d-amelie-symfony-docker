@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Manuscrits |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Présentation de mes manuscrits réalisés, chef d'oeuvre et commande.
+{% endblock %}
+
+{% block body %}
+	<h2>
+		<span class="lettrine lettrine-title">M</span>anuscrits
+	</h2>
+
+	<!-- 1er Manuscrit-->
+	<h3>Chefs d'oeuvre sur le thème de La Création</h3>
+	<div class="para">
+		Voici mon manuscrit, réalisé durant ma deuxième année à l'Institut d'Enluminure, qui m'a permis d'avoir le diplôme d'Enlumineur de France.
+	</div>
+	<div class="para">
+		Toutes les pages sont des créations personnelles. Quatre styles différents de l'enluminure sont représentés à travers ce manuscrit: la période Carolingienne, la période Romane, la période de Transition et la période Gothique. Chacune de ces périodes sont différentes, tant dans le style que dans les techniques de peinture.
+	</div>
+	<div class="para">
+		Il comprend  une vingtaine de pages, et est entièrement réalisé sur du parchemin de chèvre. Les dimensions des pages sont de 17 sur 24 cm. Il est relié avec des ais de bois, suivant les méthodes anciennes de reliure. J'ai utilisé de la feuille d'or et d'argent, collée à la mixtion à l'huile et au gesso, ainsi que des pigments naturels.
+	</div>
+	<div class="para center no-indent transparent italic">Cliquez pour agrandir...</div>
+
+	<big-picture class="grid" id="manuscrits1_container">
+		{% for m in manuscrits1 %}
+			<a href="{{ m | imagine_filter('full') }}" class="img-grid">
+				<img data-bp="{{ m | imagine_filter('full') }}" src="{{ m | imagine_filter('manuscrits_mini') }}" alt="Manuscrit1">
+			</a>
+		{% endfor %}
+	</big-picture>
+
+	<!-- 2ème Manuscrit-->
+	<h3>Livre de prières</h3>
+	<div class="para">
+		Manuscrit réalisé pour une commande entièrement réalisée à la main, sur papier, reliure médiévale, pigments et or en coquille.
+	</div>
+	<div class="para center no-indent transparent italic">Cliquez pour agrandir...</div>
+
+	<big-picture class="grid" id="manuscrits2_container">
+		{% for m in manuscrits2 %}
+			<a href="{{ m | imagine_filter('full') }}" class="img-grid">
+				<img data-bp="{{ m | imagine_filter('full') }}" src="{{ m | imagine_filter('manuscrits_mini') }}" alt="Manuscrit2">
+			</a>
+		{% endfor %}
+	</big-picture>
+
+{% endblock %}

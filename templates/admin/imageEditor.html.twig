@@ -1,0 +1,43 @@
+{% extends '@!EasyAdmin/layout.html.twig' %}
+
+{% block content %}
+	<article class="content">
+		<section class="content-header">
+			<div class="content-header-title">
+				<h1 class="title">
+					Editeur d'image
+				</h1>
+			</div>
+			<div class="page-actions">
+				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
+					Réinitialiser les modifications
+				</button>
+				<a class="btn" href="{{ getBackUrl }} ">Revenir à l'édition</a>
+			</div>
+		</section>
+		<div id="image-source" 
+			data-load-url="{{ path('imageEditorGetDesignState', { entityName: entityName, id: entity.id }) }}" 
+			data-save-url="{{ path('imageEditorUpdate', { entityName: entityName, id: entity.id }) }}" 
+			data-image-src="{{ vich_uploader_asset(entity, 'imageOriginalFile') }}"
+		></div>
+		<div id="editor-container"></div>
+	</article>
+	{# Modal #}
+	<div class="modal fade" id="confirmResetModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Réinitialiser les modifications</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Cette action est irréversible, toutes les modifications seront effacées et l'image retrouvera son état original.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+					<a class="btn btn-primary" id="reset-artwork-link" data-artwork-reset-link="{{ path('imageEditorReset', { entityName: entityName, id: entity.id }) }}">Confirmer</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

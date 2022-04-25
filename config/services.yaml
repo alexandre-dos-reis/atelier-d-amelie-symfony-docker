@@ -1,0 +1,96 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+# https://symfony.com/doc/current/configuration.html#configuration-parameters
+
+parameters:
+    app.path.artworks_images: /uploads/artworks
+    app.path.products_images: /uploads/products
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: "../src/"
+        exclude:
+            - "../src/DependencyInjection/"
+            - "../src/Entity/"
+            - "../src/Kernel.php"
+            - "../src/Tests/"
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    App\Controller\Admin\ArtworkCrudController:
+        arguments:
+            $artworksFolder: '%app.path.artworks_images%'
+
+    App\Controller\Admin\ProductCrudController:
+        arguments:
+            $productsFolder: '%app.path.products_images%'
+            $artworksFolder: '%app.path.artworks_images%'
+    
+    App\Controller\Admin\ImageProductCrudController:
+        arguments:
+            $productsFolder: '%app.path.products_images%'
+
+    App\Service\Stripe\StripeService:
+        arguments:
+            $secretKey: '%env(STRIPE_SECRET_KEY)%'
+            $publicKey: '%env(STRIPE_PUBLIC_KEY)%'
+            $confirmEndPointKey: '%env(STRIPE_CONFIRM_END_POINT_KEY)%'
+
+    Liip\ImagineBundle\Service\FilterService: '@liip_imagine.service.filter'
+
+    # Listeners :
+
+    App\EventListener\VichFileListener:
+        tags:
+            - { name: kernel.event_listener, event: vich_uploader.pre_remove }
+            - { name: kernel.event_listener, event: vich_uploader.pre_upload }
+
+    App\EventListener\AnalyticsListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onEachRequest }
+            - { name: kernel.event_listener, event: kernel.response, method: onEachResponse }
+
+    # Doctrine subscribers :
+
+    App\Doctrine\Listener\ArtworkSlugListener:
+        tags:
+            [
+                {
+                    name: "doctrine.orm.entity_listener",
+                    event: preFlush,
+                    entity: App\Entity\Artwork,
+                },
+            ]
+
+    App\Doctrine\Listener\CategorySlugListener:
+        tags:
+            [
+                {
+                    name: "doctrine.orm.entity_listener",
+                    event: preFlush,
+                    entity: App\Entity\Category,
+                },
+            ]
+
+    App\Doctrine\Listener\ProductUpdatedAtListener:
+        tags:
+            [
+                {
+                    name: "doctrine.orm.entity_listener",
+                    event: preFlush,
+                    entity: App\Entity\Product,
+                },
+            ]
+
+    

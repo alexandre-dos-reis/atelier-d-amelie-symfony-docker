@@ -1,0 +1,11 @@
+{% set badgeColor = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark', 'light'] %}
+
+{% for shopCat in shopCategoryRepository.findAll %}
+	{% if shopCat.id == field.value.shopCategory.id %}
+		<span class="badge badge-{{ badgeColor[field.value.id % badgeColor | length] }}">
+			{{ shopCat.name }}
+			-
+			{{field.value.name}}
+		</span>
+	{% endif %}
+{% endfor %}

@@ -1,0 +1,77 @@
+{% block _Product_custom_image_product_widget %}
+	<div class="form-widget">
+		<div class="form-widget-compound">
+			<div id="{{form.vars.id}}" data-empty-collection="<div class=&quot;empty collection-empty&quot;><span class=&quot;badge badge-secondary&quot;>Vide</span></div>">
+				{% for item in form.children %}
+					<div class=" form-group">
+						<div class="form-widget">
+							<div class="field-collection-item field-collection-item-complex">
+								<div class="form-widget-compound">
+
+									<div id="{{ item.vars.id }}">
+
+										<div class="form-group">
+											<img src="{{ item.children.imageFile.vars.download_uri }}" class="img-thumbnail">
+										</div>
+
+										<div class=" form-group">
+											<div class="form-widget">
+
+
+												<div class="ea-vich-file">
+													<a class="ea-vich-file-name" href="{{ item.children.imageFile.vars.download_uri }}">
+														<i class="fa fa-fw fa-file-image-o"></i>
+														{{ item.vars.value.file }}
+													</a>
+
+
+													<div class="ea-vich-file-actions">
+														<div class="btn btn-secondary input-file-container">
+															<i class="fa fa-fw fa-upload"></i>
+															Choisir un fichier
+															<input type="file" id="{{ item.children.imageFile.children.file.vars.id }}" name="{{ item.children.imageFile.children.file.vars.full_name }}" onchange="            var newFile = document.getElementById('{{ item.children.imageFile.children.file.vars.id }}').files[0];
+																																																																												            var fileSizeInMegabytes = newFile.size > 1024 * 1024;
+																																																																												            var fileSize = fileSizeInMegabytes ? newFile.size / (1024 * 1024) : newFile.size / 1024;
+																																																																												            document.getElementById('{{ item.children.imageFile.children.file.vars.id }}_new_file_name').innerText = newFile.name + ' (' + fileSize.toFixed(2) + ' ' + (fileSizeInMegabytes ? 'MB' : 'KB') + ')';
+																																																																												        " class="form-control">
+														</div>
+
+													</div>
+													<div class="small" id="{{ item.children.imageFile.children.file.vars.id }}_new_file_name"></div>
+												</div>
+
+
+											</div>
+										</div>
+
+
+										<div class=" form-group">
+											<label for="{{ item.children.disposition.vars.id }}" class="form-control-label">{{ item.children.disposition.vars.label }}</label>
+											<div class="form-widget">
+
+
+												<input type="number" id="{{ item.children.disposition.vars.id }}" name="{{ item.children.disposition.vars.full_name }}" class="form-control" value="{{ item.children.disposition.vars.value }}">
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<button type="button" class="btn btn-link field-collection-delete-button" title="Supprimer l'élément" onclick="this.closest('.form-group').remove(); return false;">
+									<i class="fas fa-times"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<button type="button" class="btn btn-link field-collection-add-button">
+			<i class="fa fa-plus pr-1"></i>
+			Ajouter un nouvel élément
+		</button>
+	</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Suivi de commande |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Suivi de commandes des produits achetés sur la boutique
+{% endblock %}
+
+{% block body %}
+	<h2>
+		<span class="lettrine lettrine-title">S</span>uivi de commande</h2>
+
+	{# <h3>Voici les informations de votre commande</h3> #}
+
+	<div class="larger para bolder center no-indent">Etat : {{ p.status }}</div>
+
+	{% if p.trackingNumber %}
+		<div class="para center no-indent">
+			<a class="link" target="_blank" href="https://m.17track.net/fr/track#nums={{ p.trackingNumber }}">Suivre le colis</a>
+		</div>
+	{% endif %}
+
+	<div class="para center no-indent mb-2">
+		<p>Identifiant de commande : <span class="bolder">{{ p.uuid }}</span></p>
+		<p>Commande passée le
+			{{ p.purchasedAt | date("d/m/Y", "Europe/Paris")}} à {{ p.purchasedAt | date("h:i", "Europe/Paris")}}</p>
+	</div>
+
+	<div class="bolder para center no-indent">Vos coordonnées</div>
+
+	{# <div class="para center no-indent">
+		<p>{{ p.fullname }}</p>
+		<p>{{ p.address }}</p>
+		<p>{{ p.postalCode }}
+			{{ p.city }},
+			{{ p.country }}</p>
+		<p>{{ p.telephone }}</p>
+		<p>{{ p.email }}</p>
+	</div> #}
+
+{% endblock %}

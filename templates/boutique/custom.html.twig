@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Oeuvres personnalisée |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Boutique, oeuvres, commandes et demandes sur mesure !
+{% endblock %}
+
+{% block body %}
+	<h2>
+		<span class="lettrine lettrine-title">B</span>outique
+	</h2>
+
+	<h3>Oeuvres personnalisées :</h3>
+	<div class="para center bolder">
+		Reproductions d'enluminure ou créations, simple lettrine ou page de manuscrit complète, tout est possible !
+	</div>
+
+	<div class="para center mb-2">
+		Je réalise sur demande:
+	</div>
+	<div class="flex-list mb-2">
+		<ul class="para list">
+			<li>Enluminures (copies, créations personnalisées...)</li>
+			<li>Images, faire-parts, cartes</li>
+			<li>Souvenirs de baptême, de communion, de confirmation...</li>
+			<li>Menus et faire-part de mariage</li>
+			<li>Idées cadeaux ( prénom enluminé, marque-pages...)</li>
+		</ul>
+	</div>
+
+	<div class="para center bolder">N'hésitez pas à me solliciter pour une commande personnalisée !</div>
+
+	<div class="para center">
+		Les tarifs dépendent du nombre d'heures et des matériaux utilisés (or, parchemin...).
+	</div>
+
+	<div class="para center larger">
+		N'hésitez pas à prendre contact avec moi
+		<a class="link" href="/contact">par courriel</a>
+		ou
+		<a class="link" href="tel:+33604011283">par téléphone</a>
+		pour plus de précisions !
+	</div>
+
+
+{% endblock %}

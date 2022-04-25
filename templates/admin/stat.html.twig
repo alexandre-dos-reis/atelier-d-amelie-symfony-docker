@@ -1,0 +1,162 @@
+{% extends '@!EasyAdmin/layout.html.twig' %}
+
+{% block content %}
+	<div id="sidebar-resizer-handler" class="resizer-handler resizer-handler-left"></div>
+	<div class="content">
+
+		<div class="content-panel p-2 mb-4">
+			<h4 class="title text-center">Moyenne du nombre de pages par session</h4>
+			<div class="text-center mb-2">Une session est comptabilisée quand un internaute arrive sur votre site et se ferme lorsqu'il le quitte. </div>
+			<div class="text-center" style="font-weight: bold; font-size: larger">{{ averagePagesPerSession | round(1, 'floor')}} pages par session</div>
+		</div>
+		<div class="content-panel p-2 mb-4">
+			<h4 class="title text-center">Durée moyenne des sessions</h4>
+			<div class="text-center mb-2">Il s'agit du temps moyen que passe un internaute sur votre site Internet.</div>
+			<div class="text-center" style="font-weight: bold; font-size: larger">{{ averageTimePerSession | round(2, 'floor')}} secondes</div>
+		</div>
+		<div class="content-panel p-2 mb-4">
+			<h4 class="title text-center">Nombre de visiteurs uniques</h4>
+			<div class="text-center mb-2">Un visiteur unique est un internaute qui visite une ou plusieurs pages du site.</div>
+			<div class="text-center" style="font-weight: bold; font-size: larger">{{ uniqueVisitors }} visiteurs uniques</div>
+		</div>
+
+		<div class="content-panel p-2 mb-4">
+			<h4 class="title text-center">10 pages les plus consultées</h4>
+			<div>
+				<canvas 
+					labels="{% for p in pages10MostViewed %}{% if p.uri == '/' %}accueil;{% else %}{{ (p.uri ~ ';') | trim('/') }}{% endif %}{% endfor %}"
+					datas="{% for p in pages10MostViewed %}{{ p.request ~ ';' }}{% endfor %}" 
+					label="Nombre de requêtes" 
+					type="bar"
+					indexAxis="y"
+					class="chart" 
+					width="400" 
+					height="100"
+					responsive="true"
+				>
+				</canvas>
+			</div>
+		</div>
+
+		<div class="content-panel p-2 mb-4">
+			<h4 class="title text-center">10 pages les moins consultées</h4>
+			<div>
+				<canvas 
+					labels="{% for p in pages10LessViewed %}{% if p.uri == '/' %}accueil;{% else %}{{ (p.uri ~ ';') | trim('/') }}{% endif %}{% endfor %}"
+					datas="{% for p in pages10LessViewed %}{{ p.request ~ ';' }}{% endfor %}" 
+					label="Nombre de requêtes" 
+					type="bar"
+					indexAxis="y"
+					class="chart" 
+					width="400" 
+					height="100"
+					responsive="true"
+				>
+				</canvas>
+			</div>
+		</div>
+
+		{# <div class="content-panel p-2 mb-4">
+			<h4 class="title text-center">10 pages où les utilisateurs ont passés le plus de temps</h4>
+			<div class="text-center">Moyenne ?</div>
+		</div> #}
+
+		<div class="content-panel p-4 mb-4">
+			<h4 class="title text-center">Nombre de pages vues</h4>
+			<div class="text-center mb-2">Nombre total de pages vues cumulées pour toutes les sessions.</div>
+			<div class="text-center" style="font-weight: bold; font-size: larger">{{ countAllPages }} pages visitées au total</div>
+			<div>
+				<h5 class="mt-4">Sur les 12 derniers mois</h5>
+				<div>
+					<canvas
+						datas="{% for p in countAllPagesSince12Months %}{{ p.numberOfPages ~ ';' }}{% endfor %}"
+						labels="{% for p in countAllPagesSince12Months %}{{ frDateMonthYear(p.date) ~ ';' }}{% endfor %}" 
+						label="Nombre de pages par mois" 
+						type="bar"
+						indexAxis="y"
+						class="chart" 
+						width="400" 
+						height="100"
+						responsive="true"
+					>
+					</canvas>
+				</div>
+			</div>
+			<div>
+				<h5 class="mt-4">Sur les 30 derniers jours</h5>
+				<div>
+					<canvas
+						datas="{% for p in countAllPagesSince30Days %}{{ p.numberOfPages ~ ';' }}{% endfor %}"
+						labels="{% for p in countAllPagesSince30Days %}{{ frDateDayMonth(p.date) ~ ';' }}{% endfor %}" 
+						label="Nombre de pages par jour" 
+						type="bar"
+						indexAxis="y"
+						class="chart" 
+						width="400" 
+						height="200"
+						responsive="true"
+					>
+					</canvas>
+				</div>
+			</div>
+			<div>
+				<h5 class="mt-4">Sur les dernières 24 heures</h5>
+				<div>
+					<canvas
+						datas="{% for p in countAllPagesSince24Hours %}{{ p.numberOfPages ~ ';' }}{% endfor %}"
+						labels="{% for p in countAllPagesSince24Hours %}{{ p.date | date('H:i:s', 'Europe/Paris') ~ ';' }}{% endfor %}" 
+						label="Nombre de pages par heure" 
+						type="bar"
+						indexAxis="y"
+						class="chart" 
+						width="400" 
+						height="170"
+						responsive="true"
+					>
+					</canvas>
+				</div>
+			</div>
+		</div>
+
+		<div class="content-panel p-2 mb-4">
+			<h4 class="title text-center">Entrées</h4>
+			<div class="text-center">Nombre de fois où les utilisateurs sont arrivés sur cette page.</div>
+		</div>
+		<div class="content-panel p-2 mb-4">
+			<h4 class="title text-center">Sorties</h4>
+			<div class="text-center">Pourcentage d'internautes qui sont sortis depuis cette page.</div>
+		</div>
+		{# <div class="content-panel p-2 mb-4">
+			<h4 class="title text-center">Nombre de nouveaux utilisateurs</h4>
+			<div class="text-center">Par mois ? Par an ? Par semaine ?</div>
+		</div> #}
+		<div class="content-panel p-2 mb-4">
+			<h4 class="title text-center">Type de requête HTTP en %</h4>
+			<div class="text-center mb-4">2xx : Succès de la requête, 3xx : Redirection, 4xx : Erreur coté client, 5xx : Erreur coté serveur.</div>
+			<div class="row d-flex justify-content-center flex-nowrap">
+				<canvas 
+					labels="{% for p in httpStatusCodePerPercentage %}{{ (p.httpStatusCode ~ ';')}}{% endfor %}"
+					datas="{% for p in httpStatusCodePerPercentage %}{{ p.percentage ~ ';' }}{% endfor %}" 
+					label="Nombre de requêtes" 
+					type="pie"
+					class="chart" 
+					width="400" 
+					height="400"
+					responsive="false"
+				>
+				</canvas>
+			</div>
+		</div>
+
+		{# <h4 class="title">
+			10 pages les plus consultées
+		</h4>
+		<div>
+			<canvas data-labels="" data-label="label" data-type="bar" class="chart" width="400" height="100"></canvas>
+		</div> #}
+	</div>
+	{# <div id="content-resizer-handler" class="resizer-handler resizer-handler-right"></div> #}
+
+
+
+{% endblock %}

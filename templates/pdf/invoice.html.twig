@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Facture</title>
+
+		<link rel="stylesheet" type="text/css" href="{{ absolute_url('pdf/style.css')}}">
+
+	</head>
+	<body>
+		<div class="heading">L 'atelier d 'Amélie</div>
+		<div>Facture n°
+			{{ purchase.uuid }}</div>
+
+		<div>
+			Email :
+			{{ purchase.email }}
+		</div>
+
+		{% for pi in purchase.purchaseItems %}
+			<div>{{ pi.qty }}
+				x
+				{{ pi.product.name }}</div>
+                 = 
+
+                 {{ pi.product.price | amount }}
+		{% endfor %}
+
+		<div>
+			Total :
+			{{ purchase.total | amount}}
+		</div>
+	</body>
+</html>

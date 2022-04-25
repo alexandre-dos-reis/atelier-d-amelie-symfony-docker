@@ -1,0 +1,12 @@
+{% block _Product_custom_artwork_widget %}
+	{# {{ dump() }} #}
+	{# Ajouter le style bootstrap sur le select #}
+		<select id="{{ id }}" name="{{ full_name }}" placeholder="Aucun(e)" data-ea-autocomplete-render-items-as-html="true" data-ea-widget="ea-autocomplete" placeholder="Aucun(e)" class="form-select" tabindex="-1" hidden="hidden"> 
+        <option value=""></option>
+		{% for option in form.vars.choices %}
+			<option value="{{ option.value }}" {% if value == option.value %} selected="true" {% endif %}>
+				&lt;img src="{{ vich_uploader_asset(option.data, 'imageOriginalFile')}}" style="width: auto; height: 20px;"&gt;
+				{{ option.label }}</option>
+		{% endfor %}
+	</select>
+{% endblock %}

@@ -1,0 +1,94 @@
+.product-images-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        border-radius: 5px;
+        margin: 5px;
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+    }
+}
+
+// https://stackoverflow.com/questions/60214721/how-do-i-shrink-the-size-of-an-image-in-react-image-gallery
+
+.product {
+
+    display: flex;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .react-image-wrapper {
+        width: 50%;
+    }
+
+    .image-gallery {
+        width: 100%;
+        height: auto;
+    }
+
+    .image-gallery-slide img {
+        width: 100%;
+        height: auto;
+        max-height: 80vh;
+        object-fit: cover;
+        overflow: hidden;
+        object-position: center center;
+    }
+
+    .fullscreen .image-gallery-slide img {
+        max-height: 80vh;
+    }
+
+    .details {
+        width: 50%;
+        padding: 0 20px;
+    }
+
+    p {
+        margin-bottom: 1em;
+    }
+}
+
+.quantity-counter {
+
+    & > * {
+        margin: 0 5px;
+    }
+
+    input {
+        width: 100px;
+        border: none;
+        text-align: center;
+    }
+    button {
+        background-color: rgb(255, 255, 255);
+        width: 30px;
+
+        &:disabled,
+        &:active {
+            background-color: rgb(233, 233, 233);
+        }
+    }
+    button,
+    input {
+        font-family: "page";
+        font-size: 1.7rem;
+        border: 1px solid rgb(203, 203, 203);
+    }
+}
+
+.add-product {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    padding: 10px;
+    font-family: "page";
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(203, 203, 203);
+    &:active {
+        background-color: rgb(233, 233, 233);
+    }
+}

@@ -1,0 +1,16 @@
+<div id="add-product-form" class="para center no-indent">
+	{% if product.stock != 0 %}
+		<div>
+			Quantité
+			<div>
+				<quantity-counter class="quantity-counter" id="shop-quantity-counter" idproduct="{{ product.id }}" name="product-qty" value="1" max="{{ product.stock }}"></quantity-counter>
+			</div>
+		</div>
+	{% endif %}
+	<button class="add-product js-open-modal-cart">
+		<add-product idtarget="shop-quantity-counter" type="button" {% if product.stock is same as 0 %} disabled="disabled" {% endif %}>
+			{% if product.stock is same as 0 %}Ce produit n'est pas disponible pour le moment.{% else %}Ajouter au panier
+			{% endif %}
+		</add-product>
+	</button>
+</div>

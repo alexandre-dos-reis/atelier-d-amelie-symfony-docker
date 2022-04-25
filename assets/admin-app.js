@@ -1,0 +1,7 @@
+import './js/lib/chart'
+import './js/functions/copyArtworkDescription'
+import './js/functions/easyAdminReplaceLinkByImg'
+import './js/functions/easyAdminAddEditorImageLink'
+import './js/functions/easyAdminReplaceImageByWatermarked'
+import './js/functions/easyAdminResetArtworkLink'
+import './js/lib/image-editor'

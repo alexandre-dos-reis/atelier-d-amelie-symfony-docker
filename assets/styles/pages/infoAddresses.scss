@@ -1,0 +1,25 @@
+.first-address,
+.second-address {
+    div {
+        width: 50%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    input,
+    textarea,
+    select,
+    option {
+        padding: 5px 10px;
+        font-family: "page";
+        font-size: 1rem;
+    }
+}
+
+.has-billing-address {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Panier |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Panier de mes produits sélectionnés
+{% endblock %}
+
+{% block body %}
+	<h2>
+		<span class="lettrine lettrine-title">P</span>anier</h2>
+
+	{% if not cartService.countProducts is same as 0 %}
+		<table>
+			<thead>
+				<tr>
+					<th>Produit</th>
+					<th>Prix</th>
+					<th>Quantités</th>
+					<th>Total</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in items %}
+					<tr>
+						<td>{{ item.product.artwork.name }}</td>
+						<td>{{ item.product.price | amount }}</td>
+						<td><quantity-counter name="product-qty" value="{{ item.qty }}" max="{{ item.product.stock }}"></quantity-counter></td>
+						<td>{{ item.total | amount }}</td>
+						<td>
+							<a href="{{ path('cart_delete', {'id': item.product.id}) }}">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="3">Total :</td>
+					<td colspan="2">{{ total | amount }}</td>
+				</tr>
+			</tfoot>
+		</table>
+	{% else %}
+		<div class="para center no-indent">Votre panier est vide. Pour ajouter des produits, rendez-vous dans la boutique :</div>
+		<div class="para center no-indent flex flex-column">
+			{% for s in shopCategoryRepository.findAll %}
+				<li class="link-close-nav no-list-style">
+					<a class="link" href="{{ path('boutique_categorie', {'cat_slug': s.slug}) }}">{{ s.name }}</a>
+				</li>
+			{% endfor %}
+		</div>
+	{% endif %}
+{% endblock %}

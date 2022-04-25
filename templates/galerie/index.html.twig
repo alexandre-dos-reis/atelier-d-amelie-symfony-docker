@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Galerie |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Présentation de mes oeuvres, classées par techniques.
+{% endblock %}
+
+{% block body %}
+	<h2>
+		<span class="lettrine lettrine-title">G</span>alerie
+	</h2>
+
+	<div class="para center no-indent transparent italic">Cliquez pour agrandir...</div>
+
+	{# responsive #}
+	<h3 class="galerie-title-album-responsive">
+		{% if categorySelected is same as 'all' %}
+			Toutes mes oeuvres
+		{% else %}
+			{{ categorySelected }}
+		{% endif %}
+	</h3>
+
+	{# big Screen #}
+	<div class="galerie-container-link">
+
+		<a href="{{ path('galerie_all') }}" class="galerie-link{% if categorySelected is same as('all') %} active{% endif %}" id="all">Toutes mes oeuvres</a>
+
+		{% for c in categories %}
+			<a href="{{ path('galerie_categorie', {'slug' : c.slug}) }}" class="galerie-link{% if c.slug is same as(categorySelected)  %} active{% endif %}" id="{{ c.slug }}">{{ c.name }}</a>
+		{% endfor %}
+
+	</div>
+
+	{# Artworks #}
+	{% if artworks is empty %}
+		<div class="para center no-indent">Il n'y a aucunes oeuvres pour cette catégorie.</div>
+	{% else %}
+		<div id="{{ categorySelected }}_galerie_container" class="galerie-container">
+			{% for a in artworks %}
+				{% set imageSrc = vich_uploader_asset(a, a.imageWatermarked ? 'imageWatermarkedFile' : 'imageOriginalFile') %}
+				<img data-bp="{{ imageSrc | imagine_filter('full') }}" data-caption="{{ a.name }}. {{ a.description }}" src="{{ imageSrc | imagine_filter('galerie_mini') }}" alt="{{ a.name }}"/>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+{% endblock %}

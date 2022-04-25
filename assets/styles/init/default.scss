@@ -1,0 +1,14 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+}
+
+a,
+a::before,
+a::before {
+    color: inherit;
+}

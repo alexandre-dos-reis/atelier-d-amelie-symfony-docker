@@ -1,0 +1,175 @@
+.show, #btn, #btn-1, #btn-2 {
+    display: none;
+}
+
+@media all and (max-width: 1100px) {
+    * {
+        text-align: left;
+    }
+    header {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-top: 0;
+        position: fixed;
+        display: block;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: auto;
+    }
+    .logo {
+        display: none;
+    }
+    #baniere1 {
+        height: 150px;
+    }
+    .logo_responsive {
+        display: block;
+        font-size: 2.5rem;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+    .icon {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        right: 20px;
+        top: 13px;
+        cursor: pointer;
+    }
+    .menu-btn-burger, .menu-btn-burger::before, .menu-btn-burger::after {
+        width: 20px;
+        height: 4px;
+        background-color: white;
+        border-radius: 9px;
+        box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
+        transition: all .5s ease-in-out;
+    }
+    .menu-btn-burger::before, .menu-btn-burger::after {
+        content: '';
+        position: absolute;
+    }
+    .menu-btn-burger::before {
+        transform: translateY(-7px);
+    }
+    .menu-btn-burger::after {
+        transform: translateY(7px);
+    }
+    /*ANIMATIONS*/
+    .icon.open .menu-btn-burger {
+        transform: translateX(-30px);
+        background: transparent;
+        box-shadow: none;
+    }
+    .icon.open .menu-btn-burger::before {
+        transform: translateX(30px) rotate(45deg);
+    }
+    .icon.open .menu-btn-burger::after {
+        transform: translateX(30px) rotate(-45deg);
+    }
+    /*************************************************/
+    ul.nav {
+        /* tentative de rendre menu déroulant scrollable */
+        overflow-y: scroll;
+        width: 100%;
+    }
+    nav ul {
+        margin-right: 0;
+        float: left;
+        display: block;
+        text-align: left;
+        margin-left: 15px;
+    }
+    nav ul li a, nav ul li label[for^='btn'] {
+        font-size: 2em;
+    }
+    ul li.link-close-nav {
+        height: 44px;
+    }
+    nav ul li label[for^='btn'] {
+        height: 40px;
+    }
+    nav ul li, nav ul ul li {
+        display: block;
+        width: 100%;
+    }
+    nav ul li ul {
+        position: static;
+        float: none;
+        display: none;
+        opacity: 1;
+        visibility: visible;
+        background-color: rgba(127, 255, 212, 0);
+        border: 0;
+        width: 100%;
+        margin-left: 40px;
+    }
+    .social {
+        position: static;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .show {
+        display: block;
+        cursor: pointer;
+        text-align: left;
+    }
+    .show+a, nav ul {
+        display: none;
+    }
+    [id^=btn]:checked+ul {
+        display: block;
+    }
+    #insta img, #facebook img {
+        padding: 0 10px;
+    }
+    .main {
+        font-size: 1rem;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .lettrine {
+        font-size: 7rem;
+    }
+    h2 {
+        font-size: 3rem;
+        margin: 2.2rem auto;
+        line-height: 1em;
+    }
+    h3 {
+        font-size: 2.2rem;
+        margin: 1rem auto;
+    }
+    .lettrine-title {
+        position: relative;
+        float: none;
+        left: 4px;
+    }
+    .para {
+        text-indent: 20px;
+    }
+    .para_lettrine {
+
+      padding-top: 4rem;
+  }
+
+  .main-img {
+      margin: 0 auto;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border: 0;
+      padding: 0;
+      margin-bottom: 0px;
+  }
+
+  .source {
+      font-size: .7rem;
+  }
+}

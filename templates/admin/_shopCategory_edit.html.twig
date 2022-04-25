@@ -1,0 +1,11 @@
+{% block _Product_custom_shop_category_widget %}
+	<select id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" data-ea-widget="ea-autocomplete" placeholder="Aucun(e)" class="form-select">
+		<option value=""></option>
+		{% for c in choices %}
+			<option value="{{ c.value }}" {% if c.value is same as value %} selected="selected" {% endif %}>{{ c.data.shopCategory.name }}
+				-
+				{{c.label}}</option>
+		{% endfor %}
+	</select>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+    atelier-amelie-app:
+        container_name: atelier-amelie-app
+        build: 
+            context: .
+            dockerfile: docker/Dockerfile
+        networks:
+            - atelier-amelie
+            - caddy
+        environment:
+            APP_ENV: ${APP_ENV}
+            APP_SECRET: ${APP_SECRET}
+            DATABASE_URL: mysql://${DB_USER}:${DB_PASS}@atelier-amelie-db:3306/${DB_NAME}?serverVersion=mariadb-10.6.3  
+            STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+            STRIPE_PUBLIC_KEY: ${STRIPE_PUBLIC_KEY}
+            STRIPE_CONFIRM_END_POINT_KEY: ${STRIPE_CONFIRM_END_POINT_KEY}
+        volumes:
+            - atelier-amelie-public:/var/www/public
+        depends_on:
+            - atelier-amelie-db
+        labels:
+            caddy: dev.atelier-amelie.fr
+            caddy.reverse_proxy: "{{upstreams 80}}"
+
+    atelier-amelie-db:
+        image: mariadb:10.6.3
+        container_name: atelier-amelie-db
+        networks:
+            - atelier-amelie
+        environment:
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+            MYSQL_USER: ${DB_USER}
+            MYSQL_PASSWORD: ${DB_PASS}
+        volumes:
+            - atelier-amelie-db:/var/lib/mysql
+
+networks:
+  atelier-amelie: {}
+  caddy:
+        external: true
+
+volumes:
+    atelier-amelie-db:
+    atelier-amelie-public:

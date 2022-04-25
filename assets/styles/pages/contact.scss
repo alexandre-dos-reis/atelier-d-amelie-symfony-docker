@@ -1,0 +1,47 @@
+
+form > div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+form > div > label, form > div > input {
+    height: 2rem;
+}
+
+form > div > label, form > div > input, form > div > textarea, form > div > button {
+    width: 70vw;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    font-family: "page";
+}
+
+form > div > button {
+    width: auto;
+    padding: 5px 10px;
+    letter-spacing: 2px;
+    background-color: rgb(228, 228, 228);
+    border: 1px solid rgb(185, 185, 185);
+    padding: 10px;
+    border-radius: 2px;
+}
+
+form > div > button:hover {
+    background-color: rgb(212, 212, 212);
+}
+
+form > div > button:active {
+    border: 1px solid rgb(128, 128, 128);
+}
+
+
+form > div > input, form > div > textarea {
+    padding: 5px 5px;
+    letter-spacing: 1px;
+}
+
+form > div > label {
+    padding: 0 20px;
+}

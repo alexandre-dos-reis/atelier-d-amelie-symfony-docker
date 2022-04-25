@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{# META #}
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="content-language" content="{{ app.request.server.get('LANG') }}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="{% block description %}{% endblock %}">
+		<meta name="keywords" content="{{ app.request.server.get('KEYWORDS') }}"/>
+		<meta name="author" content="{{ app.request.server.get('AUTHOR') }}"/>
+		<meta name="copyright" content="{{ app.request.server.get('COPYRIGHT') }}"/>
+		<meta
+		name="geography" content="{{ app.request.server.get('GEOGRAPHY') }}"/>
+
+		{# META OPEN GRAPH #}
+		<meta property="og:title" content="{{ app.request.server.get('TITLE') }}"/>
+		<meta property="og:description" content="{{ app.request.server.get('DESCRIPTION') }}"/>
+		<meta property="og:image" content="{{ app.request.server.get('IMAGE') }}"/>
+		<meta property="og:image:type" content="{{ app.request.server.get('IMAGE_TYPE') }}"/>
+		<meta property="og:url" content="{{ app.request.server.get('DOMAIN_NAME') }}{{ app.request.server.get('REQUEST_URI') }}"/>
+		<meta property="og:site_name" content="{{ app.request.server.get('TITLE') }}"/>
+		<meta property="og:type" content="website"/>
+		<meta
+		property="og:language" content="{{ app.request.server.get('LANG') }}"/>
+
+		{# META TWITTER CARD #}
+		<meta name="twitter:card" content="summary"/>
+		<meta name="twitter:title" content="{{ app.request.server.get('TITLE') }}">
+		<meta name="twitter:url" content="{{ app.request.server.get('DOMAIN_NAME') }}{{ app.request.server.get('REQUEST_URI') }}">
+		<meta name="twitter:description" content="{{ app.request.server.get('DESCRIPTION') }}">
+		<meta
+		name="twitter:image" content="{{ app.request.server.get('IMAGE') }}">
+
+		{# CANONICAL LINK #}
+		<link
+		rel="canonical" href="{{ app.request.server.get('DOMAIN_NAME') }}{{ app.request.server.get('REQUEST_URI') }}"/>
+
+		{# TITLE #}
+		<title>
+			{% block title %}
+				{{ app.request.server.get('TITLE') }}
+			{% endblock %}
+		</title>
+
+		{# CSS & JS #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+
+		<script src="https://js.stripe.com/v3/"></script>
+
+		{# Hotwire Turbo - Disable cache to prevent flickering on page load by cache #}
+		<meta name="turbo-cache-control" content="no-cache">
+	</head>
+	<body>
+		<div id="baniere1"></div>
+		{% include "layout/_header.html.twig" %}{# debug #}
+		{# <div>visitorId : {{ app.session.get('visitorId') }}</div>
+												<div>pageId : {{ app.session.get('pageId') }}</div>
+												<div>ticketTime : {{ app.session.get('ticketTime') | date('d/m/Y H:i:s', "Europe/Paris")}}</div> #}<visit-timer data-end-visit-url="{{ path('analytics_endVisit') }}" data-page-id="{{ app.session.get('pageId') }}" data-report-url="{{ path('analytics_timeSpentOnPage') }}"> </visit-timer>
+
+		{# Liens pour le panier #}
+		<div id="js-shop-cats-list-for-cart" style="display: none;">
+			{% for s in shopCategoryRepository.findAll %}
+				<a href="{{ path('boutique_categorie', {'cat_slug': s.slug}) }}">{{ s.name }}</a>
+			{% endfor %}
+		</div>
+
+		{# Message Flash #}
+		<div id="message-flash" class="message-flash">
+			Message Flash
+		</div>
+
+		<div class="main"> {% block body %}{% endblock %}
+			<img class="arabesque" src="{{ asset('build/img/arabesque.png') }}" alt="arabesque">
+		</div>
+
+		<div id="baniere2">
+			{% include "layout/_footer.html.twig" %}
+		</div>
+
+		<div id="back-to-top-btn">
+			<div id="arrows">&lt;&lt;</div>
+		</div>
+
+		<div id="react-cart"></div>
+	</body>
+</html>

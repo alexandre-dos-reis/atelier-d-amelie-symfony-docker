@@ -1,0 +1,35 @@
+// DEFAULT
+@import "./init/reset.scss";
+@import "./init/default.scss";
+@import "./init/variables.scss";
+@import "./init/polices.scss";
+
+// LAYOUT
+@import "./layout/header.scss";
+@import "./layout/navbar.scss";
+@import "./layout/social.scss";
+@import "./layout/main.scss";
+@import "./layout/footer.scss";
+@import "./layout/responsive.scss";
+@import "./layout/cart.scss";
+
+// GENERIC
+@import "./layout/generic.scss";
+
+// PAGES
+@import "./pages/galerie.scss";
+@import "./pages/realisation.scss";
+@import "./pages/manuscrits.scss";
+@import "./pages/cours.scss";
+@import "./pages/boutique.scss";
+@import "./pages/produit.scss";
+@import "./pages/contact.scss";
+@import "./pages/modal-cart.scss";
+@import "./pages/purchase.scss";
+@import "./pages/infoAddresses.scss";
+@import "./pages/flashMessage.scss";
+
+// LIBRARIES
+@import "./libraries/scrollToTop.scss";
+@import "./libraries/turbolinks.scss";
+@import "./libraries/bigPictures.scss";

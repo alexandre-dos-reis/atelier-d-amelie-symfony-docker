@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Commande |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Panier de mes produits sélectionnés
+{% endblock %}
+
+{% block body %}
+	<h2>
+		<span class="lettrine lettrine-title">I</span>nformations</h2>
+
+	<div class="para center no-indent">
+		Entrez vos coordonnées de livraison :
+	</div>
+
+	{{ form_start(formView) }}
+
+	<div class="first-address">
+		{{ form_row(formView.email)}}
+		{{ form_row(formView.firstAddressFullname)}}
+		{{ form_row(formView.firstAddressAddress)}}
+		{{ form_row(formView.firstAddressPostalCode)}}
+		{{ form_row(formView.firstAddressCity)}}
+		{{ form_row(formView.firstAddressCountry)}}
+		{{ form_row(formView.firstAddressPhone)}}
+	</div>
+	<div class="has-billing-address">
+		{{ form_row(formView.hasBillingAddress)}}
+	</div>
+	<div class="second-address" style="display: {% if formView.hasBillingAddress.vars.data == true %}flex;{% else %}none;{% endif %}">
+		{{ form_row(formView.secondAddressFullname)}}
+		{{ form_row(formView.secondAddressAddress)}}
+		{{ form_row(formView.secondAddressPostalCode)}}
+		{{ form_row(formView.secondAddressCity)}}
+		{{ form_row(formView.secondAddressCountry)}}
+	</div>
+
+	<div>
+		<button type="submit" class="pay-button mt-4" style="cursor: pointer">Valider mes informations</button>
+	</div>
+	{{ form_end(formView) }}
+
+
+{% endblock %}

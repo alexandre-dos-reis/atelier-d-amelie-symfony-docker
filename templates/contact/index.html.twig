@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Réalisation |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Réalisation d'une enluminure étape par étape.
+{% endblock %}
+
+{% block body %}
+	<h2>
+		<span class="lettrine lettrine-title">C</span>ontact</h2>
+
+	<div class="para center no-indent">Contactez-moi pour un devis, un stage, des cours individuels, un renseignement ou pour un achat sur la boutique.</div>
+	<form action="/contact" method="POST">
+		<div>
+			<label for="input_name">Votre Nom</label>
+			<input type="text" name="name" id="input_name" value="">
+		</div>
+		<div>
+			<label for="input_email">Votre Email</label>
+			<input type="email" name="email" id="input_email" value="">
+		</div>
+		<div>
+			<label for="input_subject">Sujet</label>
+			<input type="text" name="subject" id="input_subject" value="">
+		</div>
+		<div>
+			<label for="input_message">Votre message</label>
+			<textarea name="message" id="input_message" cols="30" rows="5"></textarea>
+		</div>
+		<div>
+			<button type="submit">Envoyer votre message</button>
+		</div>
+	</form>
+	<div class="para center no-indent">Vos informations ne seront pas utilisées à des fins commerciales.</div>
+{% endblock %}

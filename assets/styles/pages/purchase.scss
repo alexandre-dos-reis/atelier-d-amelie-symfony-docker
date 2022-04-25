@@ -1,0 +1,18 @@
+.cancel-button, .pay-button {
+    padding: 10px 60px;
+    border-radius: 5px;
+}
+
+.pay-button {
+    background-color: rgb(167, 226, 156);
+    &:hover {
+        background-color: rgb(129, 180, 127);
+    }
+}
+
+.cancel-button {
+    background-color: rgb(226, 156, 156);
+    &:hover {
+        background-color: rgb(180, 127, 127);
+    }
+}

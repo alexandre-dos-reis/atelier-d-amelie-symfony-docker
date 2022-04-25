@@ -1,0 +1,69 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Boutique |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Boutique, oeuvres, commandes et demandes sur mesure !
+{% endblock %}
+
+{% block body %}
+
+	{# Fil d'ariane #}
+	<div class="mt-1">
+		<a class="link" href="{{ path('boutique_categorie', {'cat_slug': product.shopSubCategory.shopCategory.slug}) }}">{{ product.shopSubCategory.shopCategory }}</a>
+		&gt;
+		<a class="link" href="{{ path('boutique_categorie', {'cat_slug': product.shopSubCategory.shopCategory.slug, '_fragment': product.shopSubCategory.slug }) }}">{{ product.shopSubCategory }}</a>
+	</div>
+
+	<h2>
+		<span class="lettrine lettrine-title">B</span>outique
+	</h2>
+
+	<h3>
+		{{ product.getArtwork.name }}
+	</h3>
+
+	<div style="display: none;" id="product" data-url="/image-product/" data-id="{{ product.id }}"></div>
+
+	<div class="product">
+		<div class="react-image-wrapper">
+			<div id="react-image-slider"></div>
+		</div>
+		<div class="details">
+			<p>{{ product.description }}</p>
+
+			<p>Hauteur :
+				{{ product.height }}
+				mm</p>
+			<p>Largeur :
+				{{ product.width }}
+				mm</p>
+
+			<p>Prix TTC :
+				<span class="bolder">{{ product.price | amount }}</span>
+			</p>
+		</div>
+	</div>
+
+
+	{# <big-picture id="products_container" class="product-images-container"> #}
+	{# {% for i in imageProducts %}
+									{% include "boutique/_imageProduct.html.twig" with {
+									'imgMini': vich_uploader_asset(i, 'imageFile') | imagine_filter('galerie_mini'),
+									'imgFull': vich_uploader_asset(i, 'imageFile') | imagine_filter('full'),
+									'imgAlt': ''
+									}
+								%} #}
+	{# {% endfor %} #}
+	{# </big-picture> #}
+
+	{# Bouton d'ajout au panier #}
+	{% include "boutique/_addProduct.html.twig" %}
+
+		<div class="para center"> Ce tarif ne prend en compte ni l'encadrement, ni les frais de ports, ni l'assurance pour l'envoi par courrier. Si vous êtes dans la région de Caen, vous pouvez récupérer vos achats directement à mon domicile.
+	</div>
+
+{% endblock %}

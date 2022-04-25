@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Réalisation |
+	{{ parent() }}
+{% endblock %}
+
+{% block description %}
+	Réalisation d'une enluminure étape par étape.
+{% endblock %}
+
+{% block body %}
+	<h2>
+		<span class="lettrine lettrine-title">R</span>éalisation d 'une enluminure
+	</h2>
+
+	<div class="para center no-indent transparent italic">Cliquez pour agrandir...</div>
+
+	<big-picture class="rea-grid" id="realisations_container">
+		{% for r in realisations %}
+			<a href="{{ r | imagine_filter('full') }}">
+				<img data-caption="{{ infos[loop.index0] }}" data-bp="{{ r | imagine_filter('full') }}" src="{{ r | imagine_filter('realisation_mini') }}" alt="{{ infos[loop.index0] }}">
+				<div class="titlesBelowImg">{{ infos[loop.index0] }}</div>
+			</a>
+		{% endfor %}
+	</big-picture>
+
+{% endblock %}
