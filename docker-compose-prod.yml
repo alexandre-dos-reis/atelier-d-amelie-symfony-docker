@@ -9,7 +9,7 @@ services:
             - atelier-amelie
             - caddy
         environment:
-            APP_ENV: PROD
+            APP_ENV: dev
             APP_SECRET: ${APP_SECRET}
             DATABASE_URL: mysql://${DB_USER}:${DB_PASS}@atelier-amelie-db:3306/${DB_NAME}?serverVersion=mariadb-10.6.3  
             STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
