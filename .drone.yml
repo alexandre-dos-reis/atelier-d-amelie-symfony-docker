@@ -14,8 +14,8 @@ server:
 steps:
 - name: Deploy via docker
   commands:
-  - echo APP_ENV=PROD >> .env
   - echo APP_SECRET=$APP_SECRET >> .env
+  - echo DONT_EXISTS=$DONT_EXISTS >> .env
   - echo DB_USER=$DB_USER >> .env
   - echo DB_PASS=$DB_PASS >> .env
   - echo DB_ROOT_PASS=$DB_ROOT_PASS >> .env
@@ -24,11 +24,12 @@ steps:
   - echo STRIPE_PUBLIC_KEY=$STRIPE_PUBLIC_KEY >> .env
   - echo STRIPE_CONFIRM_END_POINT_KEY=$STRIPE_CONFIRM_END_POINT_KEY >> .env
   - cat .env
-  - pwd
-  # - printenv
+  - printenv
   # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
   # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
   environment:
+    DONT_EXISTS:
+      from_secret: DONT_EXISTS
     APP_SECRET:
       from_secret: APP_SECRET
     DB_USER:
