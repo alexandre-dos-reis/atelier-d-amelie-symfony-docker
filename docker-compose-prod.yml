@@ -5,8 +5,13 @@ services:
         build: 
             context: .
             dockerfile: docker/Dockerfile
-            # args:
-            #     - DATABASE_URL=mysql://${DB_USER}:${DB_PASS}@atelier-amelie-db:3306/${DB_NAME}?serverVersion=mariadb-10.6.3  
+            args:
+                APP_ENV: ${APP_ENV}
+                APP_SECRET: ${APP_SECRET}
+                DATABASE_URL: mysql://${DB_USER}:${DB_PASS}@atelier-amelie-db:3306/${DB_NAME}?serverVersion=mariadb-10.6.3  
+                STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+                STRIPE_PUBLIC_KEY: ${STRIPE_PUBLIC_KEY}
+                STRIPE_CONFIRM_END_POINT_KEY: ${STRIPE_CONFIRM_END_POINT_KEY}
         networks:
             - atelier-amelie
             - caddy
