@@ -1,5 +1,7 @@
 # Projet Symfony pour le site atelier-amelie.fr
 
+[![Build Status](https://drone.reges.fr/api/badges/alexandre-dos-reis/atelier-d-amelie-symfony-docker/status.svg)](https://drone.reges.fr/alexandre-dos-reis/atelier-d-amelie-symfony-docker)
+
 Ceci est le projet symfony pour [atelier-amelie.fr](https://atelier-amelie.fr) :
 
 ## TODOs
@@ -39,6 +41,9 @@ Ceci est le projet symfony pour [atelier-amelie.fr](https://atelier-amelie.fr) :
   ~~- Gérer la suppression des images pour ImageProduct dans le listener VichUploader.~~
   ~~- Voir pourquoi les images watermarked ne sont pas chargées dans la boutique…~~
   - Créer un service pour mutualiser le listener VichUploader et le controlleur ImageEditor. 
+
+- Docker
+  - Pass Dockerfile to Alpine
 
 ## Mise en place
 
@@ -117,10 +122,6 @@ Exemple :
 drone encrypt alexandre-dos-reis/atelier-d-amelie-symfony-docker username
 AIJtbdfcS+HdONICoc1e2Z5EbAxV0Uy8dBf63aBA1FXP0quc
 ```
-
-### Utilisation de secrets chiffrés dans le fichier `.drone`.
-
-
 
 ## Docker
 
