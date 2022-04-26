@@ -1,16 +1,5 @@
 FROM php:7.4-apache
 
-ARG APP_ENV
-ENV APP_ENV=$APP_ENV
-
-ARG APP_SECRET
-ENV APP_SECRET=$APP_SECRET
-
-ARG DB_USER
-ARG DB_PASS
-ARG DB_NAME
-ENV DATABASE_URL=mysql://${DB_USER}:${DB_PASS}@atelier-amelie-db:3306/${DB_NAME}?serverVersion=mariadb-10.6.3
-
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \

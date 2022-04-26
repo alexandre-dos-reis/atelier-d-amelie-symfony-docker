@@ -18,12 +18,28 @@ steps:
       from_secret: APP_SECRET
     DB_NAME:
       from_secret: DB_NAME
-    DB_USER:
-      from_secret: DB_USER
     DB_PASS:
       from_secret: DB_PASS
+    DB_USER:
+      from_secret: DB_USER
+    STRIPE_CONFIRM_END_POINT_KEY:
+      from_secret: STRIPE_CONFIRM_END_POINT_KEY
+    STRIPE_PUBLIC_KEY:
+      from_secret: STRIPE_PUBLIC_KEY
+    STRIPE_SECRET_KEY:
+      from_secret: STRIPE_SECRET_KEY
   commands:
-    - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache --build-arg APP_ENV=prod APP_SECRET=$APP_SECRET DB_NAME=$DB_NAME DB_USER=$DB_USER DB_PASS=$DB_PASS
-    # - sudo cp /home/alex/vars/atelier-amelie/.env .env
-    # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
-    # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
+    #- sudo cp /home/alex/vars/atelier-amelie/.env .env
+    - echo APP_ENV=prod >> .env.local
+    - echo APP_SECRET=$APP_SECRET >> .env.local
+    - echo DB_NAME=$DB_NAME >> .env.local
+    - echo DB_PASS=$DB_PASS >> .env.local
+    - echo DB_USER=$DB_USER >> .env.local
+    - echo STRIPE_CONFIRM_END_POINT_KEY=$STRIPE_CONFIRM_END_POINT_KEY >> .env.local
+    - echo STRIPE_PUBLIC_KEY=$STRIPE_PUBLIC_KEY >> .env.local
+    - echo STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY >> .env.local
+    
+    - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
+    - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
+    
+    - rm .env.local
