@@ -16,16 +16,9 @@ steps:
   environment:
     USERNAME:
       from_secret: username
-    PASSWORD:
-      from_secret: password
-    USER:
-      from_secret: USER
-    VAR: myVar
   commands:
-      - echo $USERNAME
-      - echo $PASSWORD
-      - echo $USER
-      - echo $VAR
+      - export USERNAME_SHOW=$USERNAME
+      - echo $USERNAME_SHOW
     # - sudo cp /home/alex/vars/atelier-amelie/.env .env
     # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
     # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
@@ -34,8 +27,3 @@ steps:
 kind: secret
 name: username
 data: AIJtbdfcS+HdONICoc1e2Z5EbAxV0Uy8dBf63aBA1FXP0quc
-
----
-kind: secret
-name: password
-data: Qulo/Szzc4KBNTD07CILlekB94FoUt0GBUUrVaVvwP3QNb81
