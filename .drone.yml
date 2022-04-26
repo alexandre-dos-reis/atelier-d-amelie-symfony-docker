@@ -15,18 +15,9 @@ steps:
 - name: Deploy via docker
   environment:
     USERNAME:
-      from_secret: username
+      from_secret: DB_USER
   commands:
-      - export USERNAME_SHOW="$USERNAME_SHOW"
-      - export TEST="test"
-      - echo $USERNAME_SHOW
-      - echo $TEST
-
+    - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache --build-arg USERNAME=$USERNAME
     # - sudo cp /home/alex/vars/atelier-amelie/.env .env
     # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
     # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
-    
----
-kind: secret
-name: username
-data: AIJtbdfcS+HdONICoc1e2Z5EbAxV0Uy8dBf63aBA1FXP0quc
