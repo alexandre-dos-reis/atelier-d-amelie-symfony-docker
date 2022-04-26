@@ -150,7 +150,7 @@ class AppFixtures extends Fixture
                     $imageProduct = new ImageProduct;
                     $imageProduct
                         ->setDisposition($k++)
-                        ->setFile($file->getFilename())
+                        ->setImageOriginal($file->getFilename())
                         ->setUpdatedAt($faker->dateTimeBetween('-6 month', 'now'));
 
                     $manager->persist($imageProduct);

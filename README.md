@@ -9,6 +9,7 @@ Ceci est le projet symfony pour [atelier-amelie.fr](https://atelier-amelie.fr) :
 - Commun
   - Implémenter la page login.
   - Implémenter des animations
+    - [CSS Page Transitions](https://symfonycasts.com/screencast/turbo/transitions)
 
 - Boutique
   - Changer les cartes produits pour la boutique [de ce type](https://www.reeftleathergoods.com/la-boutique)
@@ -79,6 +80,13 @@ php bin/console doctrine:fixtures:load -n
 
 ```bash
 php bin/console cache:clear
+```
+
+### Créer des administrateurs
+
+Lancer la commande suivante pour créer un administrateur
+```bash
+symfony console app:create-admin username@mail.com password
 ```
 
 ## Prod
