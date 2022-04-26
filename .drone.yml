@@ -39,7 +39,7 @@ steps:
     - echo STRIPE_CONFIRM_END_POINT_KEY=$STRIPE_CONFIRM_END_POINT_KEY >> .env.local
     - echo STRIPE_PUBLIC_KEY=$STRIPE_PUBLIC_KEY >> .env.local
     - echo STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY >> .env.local
-    - echo DATABASE_URL="mysql://$DB_USER:$DB_PASS@atelier-amelie-db:3306/$DB_NAME?serverVersion=mariadb-10.6.3" >> .env.local
+    - echo DATABASE_URL="\"mysql://$DB_USER:$DB_PASS@atelier-amelie-db:3306/$DB_NAME?serverVersion=mariadb-10.6.3\"" >> .env.local
     - cat .env.local
 
     # DOCKER VARS
