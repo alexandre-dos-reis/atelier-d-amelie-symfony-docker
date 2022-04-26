@@ -20,6 +20,7 @@ steps:
       from_secret: password
     USER:
       from_secret: USER
+    VAR: myVar
   commands:
       - echo $USERNAME
       - echo $PASSWORD
