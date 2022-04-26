@@ -34,7 +34,7 @@ steps:
     #- sudo cp /home/alex/vars/atelier-amelie/.env .env
 
     # APP VARS
-    - echo APP_ENV=prod >> .env.local
+    - echo APP_ENV=dev >> .env.local
     - echo APP_SECRET=$APP_SECRET >> .env.local
     - echo STRIPE_CONFIRM_END_POINT_KEY=$STRIPE_CONFIRM_END_POINT_KEY >> .env.local
     - echo STRIPE_PUBLIC_KEY=$STRIPE_PUBLIC_KEY >> .env.local
