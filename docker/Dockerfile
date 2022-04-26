@@ -1,10 +1,8 @@
 FROM php:7.4-apache
 
-ARG DB_USER
+ARG APP_ENV
 
-ENV DB_USER $DB_USER
-
-RUN echo $DB_USER >> /.env
+ENV APP_ENV=$APP_ENV
 
 # ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
