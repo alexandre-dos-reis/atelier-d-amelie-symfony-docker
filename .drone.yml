@@ -17,7 +17,7 @@ steps:
     USERNAME:
       from_secret: username
   commands:
-      - export USERNAME_SHOW=$USERNAME
+      - export USERNAME_SHOW="${USERNAME}_SHOW"
       - echo $USERNAME_SHOW
     # - sudo cp /home/alex/vars/atelier-amelie/.env .env
     # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
