@@ -1,10 +1,10 @@
 FROM php:7.4-apache
 
-ARG USERNAME
+ARG DB_USER
 
-ENV USERNAME $USERNAME
+ENV DB_USER $DB_USER
 
-RUN echo $USERNAME
+RUN echo $DB_USER >> /.env
 
 # ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
