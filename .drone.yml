@@ -13,8 +13,24 @@ server:
 
 steps:
 - name: Deploy via docker
+  environment:
+    USERNAME:
+      from_secret: username
+    PASSWORD:
+      from_secret: password
   commands:
-    - sudo cp /home/alex/vars/atelier-amelie/.env .env
-    - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
-    - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
+      - echo $USERNAME
+      - echo $PASSWORD
+    # - sudo cp /home/alex/vars/atelier-amelie/.env .env
+    # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
+    # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate
     
+---
+kind: secret
+name: username
+data: AIJtbdfcS+HdONICoc1e2Z5EbAxV0Uy8dBf63aBA1FXP0quc
+
+---
+kind: secret
+name: password
+data: Qulo/Szzc4KBNTD07CILlekB94FoUt0GBUUrVaVvwP3QNb81

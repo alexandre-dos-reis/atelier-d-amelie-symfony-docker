@@ -21,6 +21,7 @@ Ceci est le projet symfony pour [atelier-amelie.fr](https://atelier-amelie.fr) :
 
 - Galerie
   - Implémenter une page unique avec appel ajax
+  - Vider le cache des liens de galerie à chaque Ajout/Edition/Suppression de catégories.
 
 - Entities
   - Transformer les constantes en ENUM ou se débrouiller pour enregistrer des valeurs numériques en BDD. 
@@ -35,8 +36,8 @@ Ceci est le projet symfony pour [atelier-amelie.fr](https://atelier-amelie.fr) :
     - La démarrer avec cron job.
 
 - Editeur d'image
-  - Gérer la suppression des images pour ImageProduct dans le listener VichUploader.
-  - Voir pourquoi les images watermarked ne sont pas chargées dans la boutique…
+  ~~- Gérer la suppression des images pour ImageProduct dans le listener VichUploader.~~
+  ~~- Voir pourquoi les images watermarked ne sont pas chargées dans la boutique…~~
   - Créer un service pour mutualiser le listener VichUploader et le controlleur ImageEditor. 
 
 ## Mise en place
@@ -99,6 +100,27 @@ docker-compose -f docker-compose-prod.yaml --env-file ./.env.prod up -d --build 
 - Copier la clé secrète de signature, la coller dans le fichier `.env.local` sur la clé : `STRIPE_CONFIRM_END_POINT_KEY`.
 - Effectuer un achat sur le site
 - Vérifier que Stripe récupère bien une requête au statut 200.
+
+## Drone
+
+### Chiffrer des secrets directement dans le fichier `.drone`
+
+- Avoir la CLI drone installée, sinon faire `brew install drone-cli`
+- Configurer les variables d'environnement suivantes :
+  - DRONE_SERVER
+  - DRONE_TOKEN
+- Commande de chiffrement: `drone encrypt <repository> <secret>`
+
+Exemple :
+
+```bash
+drone encrypt alexandre-dos-reis/atelier-d-amelie-symfony-docker username
+AIJtbdfcS+HdONICoc1e2Z5EbAxV0Uy8dBf63aBA1FXP0quc
+```
+
+### Utilisation de secrets chiffrés dans le fichier `.drone`.
+
+
 
 ## Docker
 
