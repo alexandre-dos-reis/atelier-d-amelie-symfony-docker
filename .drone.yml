@@ -14,10 +14,21 @@ server:
 steps:
 - name: Deploy via docker
   environment:
-    APP_ENV:
-      from_secret: APP_ENV
+    APP_SECRET:
+      from_secret: APP_SECRET
+    DB_NAME:
+      from_secret: DB_NAME
+    DB_USER:
+      from_secret: DB_USER
+    DB_PASS:
+      from_secret: DB_PASS
   commands:
-    - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache --build-arg APP_ENV=$APP_ENV
+    - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache --build-arg \
+      APP_ENV=prod \
+      APP_SECRET=$APP_SECRET \
+      DB_NAME=$DB_NAME \
+      DB_USER=$DB_USER \
+      DB_PASS=$DB_PASS
     # - sudo cp /home/alex/vars/atelier-amelie/.env .env
     # - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache
     # - sudo docker-compose -f docker-compose-prod.yml up -d --force-recreate

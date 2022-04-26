@@ -1,41 +1,48 @@
 FROM php:7.4-apache
 
 ARG APP_ENV
-
 ENV APP_ENV=$APP_ENV
 
-# ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+ARG APP_SECRET
+ENV APP_SECRET=$APP_SECRET
 
-# RUN chmod +x /usr/local/bin/install-php-extensions && \
-#     install-php-extensions \
-#         pdo_mysql \
-#         mbstring \
-#         zip \
-#         exif \
-#         pcntl \
-#         gd \
-#         intl
+ARG DB_USER
+ARG DB_PASS
+ARG DB_NAME
+ENV DATABASE_URL=mysql://${DB_USER}:${DB_PASS}@atelier-amelie-db:3306/${DB_NAME}?serverVersion=mariadb-10.6.3
 
-# RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
-#    mv composer.phar /usr/local/bin/composer
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-# RUN apt update && apt install -yqq nodejs npm
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions \
+        pdo_mysql \
+        mbstring \
+        zip \
+        exif \
+        pcntl \
+        gd \
+        intl
 
-# COPY . /var/www/
+RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
+   mv composer.phar /usr/local/bin/composer
 
-# COPY ./docker/apache.conf /etc/apache2/sites-available/000-default.conf
+RUN apt update && apt install -yqq nodejs npm
 
-# RUN cd /var/www && \
-#     composer install && \
-#     npm install --force && \
-#     npm run build && \
-#     php bin/console assets:install
+COPY . /var/www/
 
-# WORKDIR /var/www
+COPY ./docker/apache.conf /etc/apache2/sites-available/000-default.conf
 
-# RUN chown -R www-data:www-data /var/www
-# USER www-data
+RUN cd /var/www && \
+    composer install && \
+    npm install --force && \
+    npm run build && \
+    php bin/console assets:install
 
-# ENTRYPOINT ["bash", "./docker/entrypoint.sh"]
+WORKDIR /var/www
 
-# EXPOSE 80
+RUN chown -R www-data:www-data /var/www
+USER www-data
+
+ENTRYPOINT ["bash", "./docker/entrypoint.sh"]
+
+EXPOSE 80
