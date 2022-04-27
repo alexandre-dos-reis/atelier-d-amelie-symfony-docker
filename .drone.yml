@@ -46,7 +46,8 @@ steps:
     - echo DB_ROOT_PASS=$DB_ROOT_PASS >> .env.docker
 
     # Create App    
-    - sudo docker-compose -f docker-compose-prod.yml --env-file .env.docker up -d --build --force-recreate
+    - sudo docker-compose -f docker-compose-prod.yml build --pull --no-cache --force-rm
+    - sudo docker-compose -f docker-compose-prod.yml --env-file .env.docker up -d --force-recreate
 
-    # Clean Docker containers & images
-    - sudo docker system prune -a -f
+    # Clean unused images
+    - sudo docker image prune -af
