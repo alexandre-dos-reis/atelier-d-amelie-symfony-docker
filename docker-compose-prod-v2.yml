@@ -12,8 +12,9 @@ services:
             - atelier-amelie-php
         volumes:
             - atelier-amelie-public:/var/www/public:ro
-        ports:
-            - 8888:80
+        labels:
+            caddy: dev.atelier-amelie.fr
+            caddy.reverse_proxy: "{{upstreams 80}}"
 
     atelier-amelie-php:
         container_name: atelier-amelie-php
@@ -27,7 +28,6 @@ services:
             - atelier-amelie-public:/var/www/public
         depends_on:
             - atelier-amelie-db
-        
 
     atelier-amelie-db:
         image: mariadb:10.6.3
@@ -35,28 +35,18 @@ services:
         networks:
             - atelier-amelie-backend
         environment:
-            MYSQL_DATABASE: main
-            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+            MYSQL_USER: ${DB_USER}
+            MYSQL_PASSWORD: ${DB_PASS}
         volumes:
             - atelier-amelie-db:/var/lib/mysql
 
-    atelier-amelie-adminer:
-        image: adminer
-        container_name: atelier-amelie-adminer
-        restart: always
-        networks:
-            - atelier-amelie-backend
-        environment: 
-            ADMINER_DESIGN: dracula
-            ADMINER_DEFAULT_SERVER: atelier-amelie-db
-        depends_on: 
-            - atelier-amelie-db
-        ports:
-            - 9000:8080
-
 networks:
-  atelier-amelie-frontend: {}
-  atelier-amelie-backend: {}
+    atelier-amelie-frontend: {}
+    atelier-amelie-backend: {}
+    caddy:
+        external: true  
 
 volumes:
     atelier-amelie-db:
