@@ -32,6 +32,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
     gd \
     intl
 
+RUN chown -R www-data:www-data /var/www
+
 COPY . /var/www/
 COPY --from=composer-builder /app/vendor /var/www/vendor
 COPY --from=composer-builder /app/public/bundles /var/www/public/bundles
