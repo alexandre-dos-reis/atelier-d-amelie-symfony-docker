@@ -1,3 +1,21 @@
+####### BUILDERS #######
+
+FROM composer:2 AS composer-builder
+COPY . /app
+RUN mkdir -p /app && \
+    cd /app && \
+    composer install
+
+FROM node:16 as node-builder
+COPY . /app
+COPY --from=composer-builder /app/vendor /app/vendor
+RUN mkdir -p /app && \
+    cd /app && \
+    npm install --force && \
+    npm run build
+
+####### APP #######
+
 FROM php:7.4-apache
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -12,24 +30,15 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
         gd \
         intl
 
-RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
-   mv composer.phar /usr/local/bin/composer
+COPY --chown=www-data:www-data . /var/www/
+COPY --chown=www-data:www-data ./docker/apache.conf /etc/apache2/sites-available/000-default.conf
+COPY --chown=www-data:www-data --from=composer-builder /app/vendor /var/www/vendor
+COPY --chown=www-data:www-data --from=composer-builder /app/public/bundles /var/www/public/bundles
+COPY --chown=www-data:www-data --from=node-builder /app/public/build /var/www/public/build
 
-RUN apt update && apt install -yqq nodejs npm
-
-COPY . /var/www/
-
-COPY ./docker/apache.conf /etc/apache2/sites-available/000-default.conf
-
-RUN cd /var/www && \
-    composer install && \
-    npm install --force && \
-    npm run build && \
-    php bin/console assets:install
 
 WORKDIR /var/www
 
-RUN chown -R www-data:www-data /var/www
 USER www-data
 
 ENTRYPOINT ["bash", "./docker/entrypoint.sh"]

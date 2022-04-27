@@ -7,7 +7,6 @@ use App\Entity\ImageProduct;
 use App\Repository\ArtworkRepository;
 use App\Repository\ImageProductRepository;
 use App\Service\ImageEditor\ImageEditorInterface;
-use App\Service\ImageEditor\ImageEditorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;

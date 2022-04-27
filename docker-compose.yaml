@@ -2,7 +2,7 @@ version: '3.7'
 services:
     atelier-amelie-db:
         image: 'mariadb:10.6.3'
-        container_name: mariadb
+        container_name: atelier-amelie-db
         networks:
             - atelier-amelie
         environment:
@@ -10,12 +10,10 @@ services:
             MYSQL_DATABASE: main
         volumes:
             - /Users/Alexandre/.data/mariadb-10.6.3:/var/lib/mysql
-        ports:
-            - 3306:3306
 
-    adminer:
+    atelier-amelie-adminer:
         image: adminer
-        container_name: adminer
+        container_name: atelier-amelie-adminer
         restart: always
         networks:
             - atelier-amelie

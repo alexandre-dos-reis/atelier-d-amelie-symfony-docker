@@ -7,7 +7,7 @@ Ceci est le projet symfony pour [atelier-amelie.fr](https://atelier-amelie.fr) :
 ## TODOs
 
 - Commun
-  - Implémenter la page login.
+  ~~- Implémenter la page login.~~
   - Implémenter des animations
     - [CSS Page Transitions](https://symfonycasts.com/screencast/turbo/transitions)
 
@@ -20,10 +20,10 @@ Ceci est le projet symfony pour [atelier-amelie.fr](https://atelier-amelie.fr) :
 - Commande
   - Permettre de choisir entre une livraison(paiement des frais de port) ou un retrait à domicile (pas de frais de port).
   - Dans la page suivi de commande : Permettre le retour d'une commande via un formulaire de retour.
-  - Créer une CLI Symfony pour supprimer les commandes "En attente de paiement" créées il y a plus d'une semaine (par exemple), et lancer cette commande avec DroneCI via Cron.
+  - Créer une CLI Symfony pour supprimer les commandes "En attente de paiement" créées il y a plus d'une semaine (par exemple), et lancer cette commande via Cron.
 
 - Galerie
-  - Implémenter une page unique avec appel ajax
+  - Implémenter une page unique avec React
   - Vider le cache des liens de galerie à chaque Ajout/Edition/Suppression de catégories.
 
 - Entities
@@ -31,8 +31,8 @@ Ceci est le projet symfony pour [atelier-amelie.fr](https://atelier-amelie.fr) :
   
 - Admin
   - Générer des factures en PDF sur chaque commande. https://packagist.org/packages/knplabs/knp-snappy
-  - Envoi de mail
-  - Implémenter des stats visibles en admin avec Chart JS - Presque fini !
+  - Envoi de mail (Docker - Mail catcher)
+  ~~- Implémenter des stats visibles en admin avec Chart JS - Presque fini !~~
   - Implémenter une tâche en arrière plan pour résoudre des infos sur les adresses IP stockées en BDD.
     - [Créer une commande symfony via la console](https://symfony.com/doc/current/components/console.html)
     - Installer cette librairie [ip2location](https://packagist.org/packages/ip2location/ip2location-php).
@@ -44,7 +44,7 @@ Ceci est le projet symfony pour [atelier-amelie.fr](https://atelier-amelie.fr) :
   - Créer un service pour mutualiser le listener VichUploader et le controlleur ImageEditor. 
 
 - Docker
-  - Pass Dockerfile to Alpine
+  - Passer l'image Dockerfile en Alpine pour réduie la taille de l'image
 
 ## Mise en place
 

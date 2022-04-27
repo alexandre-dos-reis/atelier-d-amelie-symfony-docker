@@ -1,3 +1,10 @@
 vendor
 node_modules
 .git
+public/build
+public/bundles
+public/gallery-test
+public/legacy
+public/media
+public/product-test
+public/uploads
