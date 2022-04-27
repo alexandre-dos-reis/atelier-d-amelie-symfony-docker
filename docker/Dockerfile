@@ -30,12 +30,13 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
         gd \
         intl
 
+RUN chown -R www-data:www-data /var/www
+
 COPY --chown=www-data:www-data . /var/www/
 COPY --chown=www-data:www-data ./docker/apache.conf /etc/apache2/sites-available/000-default.conf
 COPY --chown=www-data:www-data --from=composer-builder /app/vendor /var/www/vendor
 COPY --chown=www-data:www-data --from=composer-builder /app/public/bundles /var/www/public/bundles
 COPY --chown=www-data:www-data --from=node-builder /app/public/build /var/www/public/build
-
 
 WORKDIR /var/www
 
