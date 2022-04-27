@@ -1,0 +1,44 @@
+####### BUILDERS #######
+
+FROM composer:2 AS composer-builder
+COPY . /app
+RUN mkdir -p /app && \
+    cd /app && \
+    composer install
+
+FROM node:16 as node-builder
+COPY . /app
+COPY --from=composer-builder /app/vendor /app/vendor
+RUN mkdir -p /app && \
+    cd /app && \
+    npm install --force && \
+    npm run build
+
+####### RUNNER #######
+
+FROM php:7.4-fpm-alpine
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions \
+    pdo_mysql \
+    mbstring \
+    zip \
+    exif \
+    pcntl \
+    gd \
+    intl
+
+COPY . /var/www/
+COPY --from=composer-builder /app/vendor /var/www/vendor
+COPY --from=composer-builder /app/public/bundles /var/www/public/bundles
+COPY --from=node-builder /app/public/build /var/www/public/build
+
+WORKDIR /var/www
+
+EXPOSE 9000
+
+ENTRYPOINT ["php-fpm"]

@@ -1,0 +1,53 @@
+version: '3.7'
+services:
+
+    atelier-amelie-caddy:
+        container_name: atelier-amelie-caddy
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-caddy
+        networks:
+            - atelier-amelie-frontend
+        depends_on:
+            - atelier-amelie-php
+        volumes:
+            - atelier-amelie-public:/var/www/public:ro
+        labels:
+            caddy: dev.atelier-amelie.fr
+            caddy.reverse_proxy: "{{upstreams 80}}"
+
+    atelier-amelie-php:
+        container_name: atelier-amelie-php
+        build: 
+            context: .
+            dockerfile: docker/Dockerfile-php
+        networks:
+            - atelier-amelie-frontend
+            - atelier-amelie-backend
+        volumes:
+            - atelier-amelie-public:/var/www/public
+        depends_on:
+            - atelier-amelie-db
+
+    atelier-amelie-db:
+        image: mariadb:10.6.3
+        container_name: atelier-amelie-db
+        networks:
+            - atelier-amelie-backend
+        environment:
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+            MYSQL_USER: ${DB_USER}
+            MYSQL_PASSWORD: ${DB_PASS}
+        volumes:
+            - atelier-amelie-db:/var/lib/mysql
+
+networks:
+    atelier-amelie-frontend: {}
+    atelier-amelie-backend: {}
+    caddy:
+        external: true  
+
+volumes:
+    atelier-amelie-db:
+    atelier-amelie-public:
