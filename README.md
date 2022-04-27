@@ -82,6 +82,8 @@ php bin/console doctrine:fixtures:load -n
 php bin/console cache:clear
 ```
 
+## Commandes perso
+
 ### Créer des administrateurs
 
 Lancer la commande suivante pour créer un administrateur
