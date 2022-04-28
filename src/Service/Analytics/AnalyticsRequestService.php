@@ -16,15 +16,20 @@ class AnalyticsRequestService
 {
     // Pour éviter d'enregistrer les URLs de développement et d'admin.
     protected static $closedRoutes = [
-        'startWith' => ['
-            /analytics', 
-            '/admin', 
-            '/_wdt', 
-            '/_profiler', 
+        'startWith' => [
+            '/analytics',
+            '/admin',
+            '/_wdt',
+            '/_profiler',
             '/_fragment',
-            '/paiement/confirmation'
+            '/paiement/confirmation',
+            '/media/cache'
         ],
-        'endWith' => ['.ico', '.jpg', '.jpeg']
+        'endWith' => [
+            '.ico',
+            '.jpg',
+            '.jpeg'
+        ]
     ];
 
     protected RequestAnalytics $requestAnalytics;
