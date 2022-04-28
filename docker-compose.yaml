@@ -10,6 +10,8 @@ services:
             MYSQL_DATABASE: main
         volumes:
             - /Users/Alexandre/.data/mariadb-10.6.3:/var/lib/mysql
+        ports:
+            - 3306:3306
 
     atelier-amelie-adminer:
         image: adminer
