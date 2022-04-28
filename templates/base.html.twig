@@ -33,8 +33,10 @@
 		name="twitter:image" content="{{ app.request.server.get('IMAGE') }}">
 
 		{# CANONICAL LINK #}
-		<link
-		rel="canonical" href="{{ app.request.server.get('DOMAIN_NAME') }}{{ app.request.server.get('REQUEST_URI') }}"/>
+		<link rel="canonical" href="{{ app.request.server.get('DOMAIN_NAME') }}{{ app.request.server.get('REQUEST_URI') }}"/>
+
+		{# TEST MIXED CONTENT HTTP TO HTTPS #}
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
 		{# TITLE #}
 		<title>
