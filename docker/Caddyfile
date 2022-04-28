@@ -1,9 +1,5 @@
 log
-
-redir 301 {
-  if {scheme} is http
-  / https://{host}{uri}
-}
+debug
 
 :80 {
 	root * /var/www/public
