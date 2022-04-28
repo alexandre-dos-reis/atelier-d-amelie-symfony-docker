@@ -6,6 +6,12 @@ Ceci est le projet symfony pour [atelier-amelie.fr](https://atelier-amelie.fr) :
 
 ## TODOs
 
+- HTTP/HTTPS
+  - Les images ne sont pas chargés en HTTPS / Problème appelé `Mixed content`
+  - https://symfony.com/doc/current/deployment/proxies.html
+  - https://caddy.community/t/anyone-have-any-luck-with-mixed-content-forcing-https-on-proxy-requests/2336/8
+  - https://caddy.community/t/anyone-have-any-luck-with-mixed-content-forcing-https-on-proxy-requests/2336/8
+
 - Commun
   ~~- Implémenter la page login.~~
   - Implémenter des animations

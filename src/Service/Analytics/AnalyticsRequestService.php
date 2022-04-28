@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class AnalyticsRequestService
 {
-    // Pour éviter d'enregistrer les URLs de développement et d'admin.
+    // Pour éviter d'enregistrer les URLs de développement, d'admin et du panier.
     protected static $closedRoutes = [
         'startWith' => [
             '/analytics',
@@ -23,7 +23,8 @@ class AnalyticsRequestService
             '/_profiler',
             '/_fragment',
             '/paiement/confirmation',
-            '/media/cache'
+            '/media/cache',
+            '/panier'
         ],
         'endWith' => [
             '.ico',

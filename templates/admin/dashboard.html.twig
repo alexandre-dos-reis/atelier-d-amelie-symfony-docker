@@ -5,13 +5,15 @@
 		<p class="lead">Bienvenue dans l'espace d'administration de votre site internet.</p>
 
 		{% if purchases | length > 0 %}
-			<div class="container">
+			<div class="alert alert-danger rounded text-center">
 				<a href="/admin?referrer=%2Fadmin%3FcrudAction%3Dindex%26crudControllerFqcn%3DApp%255CController%255CAdmin%255CPurchaseCrudController%26menuIndex%3D9%26signature%3DgCkLDLTZJs8Qgvp4i2a5pf0o4K3szK_5Kw2ZRmb9cA0%26sort%255BpurchasedAt%255D%3DDESC%26submenuIndex%3D-1&crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CPurchaseCrudController&menuIndex=9&signature=gCkLDLTZJs8Qgvp4i2a5pf0o4K3szK_5Kw2ZRmb9cA0&sort%5BpurchasedAt%5D=DESC&submenuIndex=-1&filters%5Bstatus%5D%5Bcomparison%5D=%3D&filters%5Bstatus%5D%5Bvalue%5D=En+cours+de+pr%C3%A9paration">Il y a
 				{{ purchases | length }} commande{% if purchases | length > 1 %}s{% endif %}
 				dont le statut est : <strong>En cours de préparation</strong>.</a>
 			</div>
 			{% else %}
-				Il n'y a aucune commande qui réclame votre attention.
+				<div class="alert alert-success rounded text-center">
+					Il n'y a aucune commande qui réclame votre attention.
+				</div>
 		{% endif %}
 
 	</div>

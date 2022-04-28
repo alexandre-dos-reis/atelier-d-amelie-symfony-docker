@@ -20,7 +20,7 @@
 			{% for item in form.vars.value %}
 				<li class="list-group-item ">
 					<h5>{{ choices[item].label }}</h5>
-					<img src="/uploads/products/{{ productRepository.find(choices[item].data.product.id).getImageProducts[0].file }}" style="height: 100px; weight: auto; margin-right: 30px;">
+					<img src="/uploads/products/{{ productRepository.find(choices[item].data.product.id).getImageProducts[0].imageOriginal }}" style="height: 100px; weight: auto; margin-right: 30px;">
 					<span style="font-size: 1.1rem;" class="badge badge-secondary badge-pill">{{ choices[item].data.qty }}</span>
 					<span style="font-size: 1.1rem;">x
 						{{ choices[item].data.productPrice | amount }}
