@@ -29,16 +29,15 @@
 		<meta name="twitter:title" content="{{ app.request.server.get('TITLE') }}">
 		<meta name="twitter:url" content="{{ app.request.server.get('DOMAIN_NAME') }}{{ app.request.server.get('REQUEST_URI') }}">
 		<meta name="twitter:description" content="{{ app.request.server.get('DESCRIPTION') }}">
-		<meta
-		name="twitter:image" content="{{ app.request.server.get('IMAGE') }}">
+		<meta name="twitter:image" content="{{ app.request.server.get('IMAGE') }}">
 
 		{# CANONICAL LINK #}
 		<link rel="canonical" href="{{ app.request.server.get('DOMAIN_NAME') }}{{ app.request.server.get('REQUEST_URI') }}"/>
 
 		{# TEST MIXED CONTENT HTTP TO HTTPS #}
-		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
-		{# TITLE #}
+		{# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests #}
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> {# TITLE #}
+		
 		<title>
 			{% block title %}
 				{{ app.request.server.get('TITLE') }}
@@ -63,8 +62,8 @@
 		<div id="baniere1"></div>
 		{% include "layout/_header.html.twig" %}{# debug #}
 		{# <div>visitorId : {{ app.session.get('visitorId') }}</div>
-												<div>pageId : {{ app.session.get('pageId') }}</div>
-												<div>ticketTime : {{ app.session.get('ticketTime') | date('d/m/Y H:i:s', "Europe/Paris")}}</div> #}<visit-timer data-end-visit-url="{{ path('analytics_endVisit') }}" data-page-id="{{ app.session.get('pageId') }}" data-report-url="{{ path('analytics_timeSpentOnPage') }}"> </visit-timer>
+														<div>pageId : {{ app.session.get('pageId') }}</div>
+														<div>ticketTime : {{ app.session.get('ticketTime') | date('d/m/Y H:i:s', "Europe/Paris")}}</div> #}<visit-timer data-end-visit-url="{{ path('analytics_endVisit') }}" data-page-id="{{ app.session.get('pageId') }}" data-report-url="{{ path('analytics_timeSpentOnPage') }}"> </visit-timer>
 
 		{# Liens pour le panier #}
 		<div id="js-shop-cats-list-for-cart" style="display: none;">

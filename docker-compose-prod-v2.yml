@@ -5,7 +5,7 @@ services:
         container_name: atelier-amelie-caddy
         build:
             context: .
-            dockerfile: docker/Dockerfile-caddy
+            dockerfile: docker/caddy/Dockerfile-caddy
         networks:
             - caddy
             - atelier-amelie-frontend
@@ -21,7 +21,7 @@ services:
         container_name: atelier-amelie-php
         build: 
             context: .
-            dockerfile: docker/Dockerfile-php
+            dockerfile: docker/php-fpm/Dockerfile-php-fpm
         networks:
             - atelier-amelie-frontend
             - atelier-amelie-backend
