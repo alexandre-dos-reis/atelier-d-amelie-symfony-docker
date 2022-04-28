@@ -50,7 +50,7 @@ Ceci est le projet symfony pour [atelier-amelie.fr](https://atelier-amelie.fr) :
   - Créer un service pour mutualiser le listener VichUploader et le controlleur ImageEditor. 
 
 - Docker
-  - Passer l'image Dockerfile en Alpine pour réduie la taille de l'image
+  ~~- Passer l'image Dockerfile en Alpine pour réduie la taille de l'image~~
 
 ## Mise en place
 
