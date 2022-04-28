@@ -1,6 +1,13 @@
-:80 
+log
 
-root * /var/www/public
-php_fastcgi atelier-amelie-php:9000
-file_server
-encode zstd gzip
+redir 301 {
+  if {scheme} is http
+  / https://{host}{uri}
+}
+
+:80 {
+	root * /var/www/public
+	php_fastcgi atelier-amelie-php:9000
+	file_server
+	encode zstd gzip
+} 
