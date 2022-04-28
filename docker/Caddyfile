@@ -4,4 +4,4 @@ root * /var/www/public
 php_fastcgi atelier-amelie-php:9000
 file_server
 encode zstd gzip
-header /media/cache/* http:// https://
+#header /media/cache/* http:// https://
