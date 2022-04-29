@@ -1,4 +1,13 @@
 .turbolinks-progress-bar {
-    height: 2px;
-    background-color: rgba(255, 255, 255, 0.835);
-  }
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.835);
+}
+
+body .main {
+  transition: opacity 300ms ease-out;
+}
+
+body.turbo-loading .main,
+body.turbo-loaded .main {
+  opacity: 0;
+}

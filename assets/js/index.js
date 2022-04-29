@@ -1,3 +1,6 @@
+// Turbo
+import './lib/turbo'
+
 import QuantityCounter from './elements/QuantityCounter'
 import BigPicture from './elements/BigPicture'
 import AddProduct from './elements/AddProduct'
