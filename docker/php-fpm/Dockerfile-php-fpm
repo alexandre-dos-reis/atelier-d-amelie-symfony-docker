@@ -11,7 +11,7 @@ COPY . /app
 COPY --from=composer-builder /app/vendor /app/vendor
 RUN mkdir -p /app && \
     cd /app && \
-    npm install --force && \
+    npm install && \
     npm run build
 
 ####### RUNNER #######
