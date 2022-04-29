@@ -29,8 +29,8 @@
 
 	<big-picture class="grid" id="manuscrits1_container">
 		{% for m in manuscrits1 %}
-			<a href="{{ m | imagine_filter('full') }}" class="img-grid">
-				<img data-bp="{{ m | imagine_filter('full') }}" src="{{ m | imagine_filter('manuscrits_mini') }}" alt="Manuscrit1">
+			<a href="{{ httpToHttps(m | imagine_filter('full')) }}" class="img-grid">
+				<img data-bp="{{ httpToHttps(m | imagine_filter('full')) }}" src="{{ httpToHttps(m | imagine_filter('manuscrits_mini')) }}" alt="Manuscrit1">
 			</a>
 		{% endfor %}
 	</big-picture>
@@ -44,8 +44,8 @@
 
 	<big-picture class="grid" id="manuscrits2_container">
 		{% for m in manuscrits2 %}
-			<a href="{{ m | imagine_filter('full') }}" class="img-grid">
-				<img data-bp="{{ m | imagine_filter('full') }}" src="{{ m | imagine_filter('manuscrits_mini') }}" alt="Manuscrit2">
+			<a href="{{ httpToHttps(m | imagine_filter('full')) }}" class="img-grid">
+				<img data-bp="{{ httpToHttps(m | imagine_filter('full')) }}" src="{{ httpToHttps(m | imagine_filter('manuscrits_mini')) }}" alt="Manuscrit2">
 			</a>
 		{% endfor %}
 	</big-picture>

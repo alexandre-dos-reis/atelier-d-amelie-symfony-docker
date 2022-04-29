@@ -31,7 +31,7 @@
 				<div class="product-container">
 					{% for p in c.products %}
 						<a href="{{ path('boutique_produit', { 'cat_slug': shopCat.slug, 'sub_cat_slug': c.slug, 'p_slug': p.artwork.slug, 'p_id': p.id }) }}">
-							<img src="{{ vich_uploader_asset(p.firstImage, p.firstImage.imageWatermarked ? 'imageWatermarkedFile' : 'imageOriginalFile') | imagine_filter('boutique_mini') }}" alt="{{ p.getArtwork.name }}">
+							<img src="{{ httpToHttps(vich_uploader_asset(p.firstImage, p.firstImage.imageWatermarked ? 'imageWatermarkedFile' : 'imageOriginalFile') | imagine_filter('boutique_mini')) }}" alt="{{ p.getArtwork.name }}">
 							<div class="card">
 								<div class="titlesBelowImg">{{ p.getArtwork.name }}</div>
 								<div class="description">{{ p.description | u.truncate(20, '...', false)}}</div>

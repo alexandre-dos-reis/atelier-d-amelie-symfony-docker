@@ -36,8 +36,9 @@
 
 		{# TEST MIXED CONTENT HTTP TO HTTPS #}
 		{# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests #}
-		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> {# TITLE #}
+		{# <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  #}
 		
+		{# TITLE #}
 		<title>
 			{% block title %}
 				{{ app.request.server.get('TITLE') }}

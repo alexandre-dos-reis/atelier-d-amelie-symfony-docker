@@ -5,6 +5,7 @@ namespace App\Service\Image;
 use App\Entity\Artwork;
 use App\Entity\Product;
 use App\Entity\ImageProduct;
+use App\Service\HttpToHttps\HttpToHttpsService;
 use Liip\ImagineBundle\Service\FilterService;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
@@ -12,11 +13,16 @@ class ImageService
 {
     private UploaderHelper $uploaderHelper;
     private FilterService $filterService;
+    private static ?HttpToHttpsService $httpToHttpsService;
 
-    public function __construct(UploaderHelper $uploaderHelper, FilterService $filterService)
-    {
+    public function __construct(
+        UploaderHelper $uploaderHelper,
+        FilterService $filterService,
+        HttpToHttpsService $httpToHttpsService
+    ) {
         $this->uploaderHelper = $uploaderHelper;
         $this->filterService = $filterService;
+        self::$httpToHttpsService = $httpToHttpsService;
     }
 
     public function getImageProductsForReact(
@@ -26,15 +32,16 @@ class ImageService
     ): array {
 
         $srcImages = [];
-
         if ($product->getImageProducts()->count() === 0) {
             // No imageProduct for this product, we get the artwork image instead.
             $imageFile = $product->getArtwork()->getImageWatermarked() ? 'imageWatermarkedFile' : 'imageOriginalFile';
-            array_push($srcImages, $this->uploaderHelper->asset($product->getArtwork(), $imageFile, Artwork::class));
+            $assetUrl = $this->uploaderHelper->asset($product->getArtwork(), $imageFile, Artwork::class);
+            array_push($srcImages, self::$httpToHttpsService->convert($assetUrl));
         } else {
             foreach ($product->getImageProducts() as $ip) {
                 $imageFile = $ip->getImageWatermarked() ? 'imageWatermarkedFile' : 'imageOriginalFile';
-                array_push($srcImages, $this->uploaderHelper->asset($ip, $imageFile, ImageProduct::class));
+                $assetUrl = $this->uploaderHelper->asset($ip, $imageFile, ImageProduct::class);
+                array_push($srcImages, self::$httpToHttpsService->convert($assetUrl));
             }
         }
 

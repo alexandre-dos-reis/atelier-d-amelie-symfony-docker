@@ -18,8 +18,8 @@
 
 	<big-picture class="rea-grid" id="realisations_container">
 		{% for r in realisations %}
-			<a href="{{ r | imagine_filter('full') }}">
-				<img data-caption="{{ infos[loop.index0] }}" data-bp="{{ r | imagine_filter('full') }}" src="{{ r | imagine_filter('realisation_mini') }}" alt="{{ infos[loop.index0] }}">
+			<a href="{{ httpToHttps(r | imagine_filter('full')) }}">
+				<img data-caption="{{ infos[loop.index0] }}" data-bp="{{ httpToHttps(r | imagine_filter('full')) }}" src="{{ httpToHttps(r | imagine_filter('realisation_mini')) }}" alt="{{ infos[loop.index0] }}">
 				<div class="titlesBelowImg">{{ infos[loop.index0] }}</div>
 			</a>
 		{% endfor %}
