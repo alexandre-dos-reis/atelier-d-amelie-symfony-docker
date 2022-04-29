@@ -43,7 +43,7 @@
 		<div id="{{ categorySelected }}_galerie_container" class="galerie-container">
 			{% for a in artworks %}
 				{% set imageSrc = vich_uploader_asset(a, a.imageWatermarked ? 'imageWatermarkedFile' : 'imageOriginalFile') %}
-				<img data-bp="{{ imageSrc | imagine_filter('full') }}" data-caption="{{ a.name }}. {{ a.description }}" src="{{ imageSrc | imagine_filter('galerie_mini') }}" alt="{{ a.name }}"/>
+				<img data-bp="{{ httpToHttps(imageSrc | imagine_filter('full')) }}" data-caption="{{ a.name }}. {{ a.description }}" src="{{ httpToHttps(imageSrc | imagine_filter('galerie_mini')) }}" alt="{{ a.name }}"/>
 			{% endfor %}
 		</div>
 	{% endif %}
