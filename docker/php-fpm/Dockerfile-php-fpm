@@ -41,6 +41,8 @@ COPY --chown=www-data:www-data --from=node-builder /app/public/build /var/www/pu
 
 WORKDIR /var/www
 
+USER www-data
+
 EXPOSE 9000
 
 ENTRYPOINT ["php-fpm"]
