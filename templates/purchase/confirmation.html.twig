@@ -64,7 +64,8 @@
 			<ul class="para list">
 				{% for item in cart %}
 					<li class="no-list-style left" style="display: flex; align-items: center; margin-bottom: 10px; border: 1px solid rgb(190, 190, 190); padding: 10px; border-radius: 2px;">
-						<img style="height: 80px; width: 80px; object-fit: contain;" src="/uploads/products/{{ item.product.imageProducts[0] }}" alt="{{ item.product.__toString }}"/>
+						{% set src = httpToHttps(vich_uploader_asset(item.product.firstImage, item.product.firstImage.imageWatermarked ? 'imageWatermarkedFile' : 'imageOriginalFile') | imagine_filter('boutique_mini')) %}
+						<img style="height: 80px; width: 80px; object-fit: contain;" src="{{ src }}" alt="{{ item.product.__toString }}"/>
 						<div>
 							<p>{{ item.product.__toString}}</p>
 							<p>{{ item.qty }}
