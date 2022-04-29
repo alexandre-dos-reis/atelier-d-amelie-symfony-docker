@@ -46,6 +46,10 @@ services:
             $secretKey: '%env(STRIPE_SECRET_KEY)%'
             $publicKey: '%env(STRIPE_PUBLIC_KEY)%'
             $confirmEndPointKey: '%env(STRIPE_CONFIRM_END_POINT_KEY)%'
+    
+    App\Service\HttpToHttps\HttpToHttpsService:
+        arguments:
+            $appEnv: '%env(APP_ENV)%'
 
     Liip\ImagineBundle\Service\FilterService: '@liip_imagine.service.filter'
 
