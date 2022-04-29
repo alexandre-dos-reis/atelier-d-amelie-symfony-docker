@@ -8,6 +8,13 @@ use Twig\TwigFunction;
 
 class HttpToHttpsExtension extends AbstractExtension
 {
+    private HttpToHttpsService $httpToHttpsService;
+
+    public function __construct(HttpToHttpsService $httpToHttpsService)
+    {
+        $this->httpToHttpsService = $httpToHttpsService;
+    }
+
     public function getFunctions()
     {
         return [
@@ -17,6 +24,6 @@ class HttpToHttpsExtension extends AbstractExtension
 
     public function httpToHttps(string $url): string
     {
-        return (new HttpToHttpsService())->convert($url);
+        return $this->httpToHttpsService->convert($url);
     }
 }

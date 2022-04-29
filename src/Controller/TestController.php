@@ -2,24 +2,26 @@
 
 namespace App\Controller;
 
-use App\Repository\ArtworkRepository;
-use App\Repository\ProductRepository;
-use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use Symfony\Component\HttpFoundation\Response;
+use App\Service\HttpToHttps\HttpToHttpsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TestController extends AbstractController
 {
-    private AdminUrlGenerator $adminUrlGenerator;
-    private ArtworkRepository $artworkRepo;
-    private ProductRepository $productRepo;
+    private HttpToHttpsService $httpToHttpsService;
 
-    public function __construct(AdminUrlGenerator $adminUrlGenerator, ArtworkRepository $artworkRepo, ProductRepository $productRepo)
+    public function __construct(HttpToHttpsService $httpToHttpsService)
     {
-        $this->adminUrlGenerator = $adminUrlGenerator;
-        $this->artworkRepo = $artworkRepo;
-        $this->productRepo = $productRepo;
+        $this->httpToHttpsService = $httpToHttpsService;
+    }
+    
+    /**
+     * @Route("/test", name="test")
+     */
+    public function index(): Response
+    {
+        dd($this->httpToHttpsService->convert('http://test.fr'));
+        return $this->render('accueil/index.html.twig');
     }
 }
