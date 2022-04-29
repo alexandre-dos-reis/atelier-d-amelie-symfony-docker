@@ -16,12 +16,12 @@ class TestController extends AbstractController
         $this->httpToHttpsService = $httpToHttpsService;
     }
     
-    /**
-     * @Route("/test", name="test")
-     */
-    public function index(): Response
-    {
-        dd($this->httpToHttpsService->convert('http://test.fr'));
-        return $this->render('accueil/index.html.twig');
-    }
+    // /**
+    //  * @Route("/test", name="test")
+    //  */
+    // public function index(): Response
+    // {
+    //     dd($this->httpToHttpsService->convert('http://test.fr'));
+    //     return $this->render('accueil/index.html.twig');
+    // }
 }
